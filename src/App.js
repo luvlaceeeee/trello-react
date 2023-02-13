@@ -13,7 +13,7 @@ function App() {
         {/*<Badge title={'To do'} color={'blue'}/>*/}
         {/*<Tag title={'UX design'}/>*/}
         {/*<IconButton icon={<FiPlus size={15}/>}/>*/}
-        <div className='bg-blue-100 flex flex-col justify-between items-center w-72 rounded-lg p-2'>
+        <div className='bg-blue-100 flex flex-col justify-between items-center w-72 rounded-lg p-3 pb-4'>
             <div className='flex flex-row justify-between items-center w-full p-2'>
                 <Badge title={'To do'} color={'blue'}/>
                 <IconButton icon={<FiPlus size={15}/>}/>
