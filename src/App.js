@@ -24,8 +24,12 @@ function App() {
                     <Tag title={'UX design'}/>
                     <IconButton icon={<FiMoreVertical size={15}/>}/>
                 </div>
-                <h1 className='font-bold pb-1'>Usability Testing</h1>
-                <span className='text-gray-400 text-sm pb-3 h-full'>Testing App ke user (16-20 y.o.)</span>
+                <div className='h-auto'>
+                    <h1 className='font-bold pb-1'>Usability Testing</h1>
+                </div>
+                <div className='pb-3 h-auto'>
+                    <span className='text-gray-400 text-sm'>Testing App ke user (16-20 y.o.)</span>
+                </div>
                 <div className='flex flex-row justify-between items-end w-full'>
                     <div className="flex -space-x-4">
                         <img className="w-7 h-7 rounded-full "
