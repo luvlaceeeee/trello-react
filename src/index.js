@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './tailwind.css'
-import Layout from "./components/Layout";
+import ColumnLayout from "./components/ColumnLayout";
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
 import IconButton from "./components/UI/IconButton/IconButton";

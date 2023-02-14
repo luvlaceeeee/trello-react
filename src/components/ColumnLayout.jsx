@@ -2,12 +2,12 @@ import React from 'react';
 import ButtonMenu from "./UI/Button/ButtonMenu";
 import {FiCodesandbox} from "react-icons/fi";
 
-const Layout = ({children}) => {
+const ColumnLayout = ({children}) => {
     return (
-        <div className='h-screen bg-zinc-900'>
+        <div className="p-4 flex space-x-3 overflow-auto scroll-smooth flex-1">
             {children}
         </div>
     );
 };
 
-export default Layout;
+export default ColumnLayout;

@@ -13,16 +13,17 @@ import {useSidebar} from "../store/store";
 
 const buttons = [
     {title: 'Space', icon: <FiCodesandbox size={20}/>},
-    {title: 'Dashboard', icon: <FiLayout size={20}/>},
-    {title: 'Schedule', icon: <FiList size={20}/>},
-    {title: 'Inbox', icon: <FiMessageSquare size={20}/>},
-    {title: 'Teams', icon: <FiGitPullRequest size={20}/>},
+    // {title: 'Dashboard', icon: <FiLayout size={20}/>},
+    // {title: 'Schedule', icon: <FiList size={20}/>},
+    // {title: 'Inbox', icon: <FiMessageSquare size={20}/>},
+    // {title: 'Teams', icon: <FiGitPullRequest size={20}/>},
 
 ]
 
-const Sidebar = ({isOpen}) => {
+const Sidebar = () => {
 
     const setOpen = useSidebar((state) => state.setOpen)
+    const isOpen = useSidebar(state => state.isOpen)
 
     return (
         <div className={`${isOpen ? 'w-60' : 'w-28'} p-4 bg-white text-black absolute top-0 left-0 bottom-0 border-r-2 border-zinc-400 border-opacity-20 transition-all ease-out duration-300`}>
