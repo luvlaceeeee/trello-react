@@ -9,10 +9,6 @@ import IconButton from "./components/UI/IconButton/IconButton";
 function App() {
   return (
     <div>
-        {/*<ButtonMenu title={'Space'} icon={<FiCodesandbox size={20}/>}/>*/}
-        {/*<Badge title={'To do'} color={'blue'}/>*/}
-        {/*<Tag title={'UX design'}/>*/}
-        {/*<IconButton icon={<FiPlus size={15}/>}/>*/}
         <div className='bg-blue-100 flex flex-col justify-between items-center w-72 rounded-lg p-3 pb-4'>
             <div className='flex flex-row justify-between items-center w-full p-2'>
                 <Badge title={'To do'} color={'blue'}/>
@@ -62,7 +58,6 @@ function App() {
                     <span className='text-gray-400 text-xs'>10 Nov 2021</span>
                 </div>
             </div>
-
         </div>
     </div>
   );

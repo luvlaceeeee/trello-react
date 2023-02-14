@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Content = ({children}) => {
+const Content = ({children, isOpen}) => {
     return (
-        <div className={'content h-screen flex flex-col ransition-all ease-out duration-300' + ' pl-60'}>
+        <div className={`${isOpen ? ' pl-60' : ' pl-28'} content h-screen flex flex-col transition-all ease-out duration-300`}>
             {children}
         </div>
     );
