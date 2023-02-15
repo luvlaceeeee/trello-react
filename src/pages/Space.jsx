@@ -9,8 +9,11 @@ import SpaceHeader from "../components/SpaceHeader";
 import BoardColumn from "../components/BoardColumn";
 import AddColumn from "../components/AddColumn";
 import {Link} from "react-router-dom";
+import Modal from "../components/Modal";
+import {useSpace} from "../store/store";
 
 const Space = () => {
+    const boards = useSpace(state => state.boards)
     return (
         <div>
             <Sidebar/>
@@ -21,9 +24,12 @@ const Space = () => {
                 </HeaderLayout>
 
                 <ColumnLayout>
-                    <Link to='/board'>
-                        <BoardColumn title={'Agile board'}/>
-                    </Link>
+                        {boards.map(board => {
+                            return <Link to='/board'>
+                                <BoardColumn title={board.title}/>
+                            </Link>
+                        })}
+                        {/*<BoardColumn title={'Agile board'}/>*/}
                     <AddColumn title={'Add new board'}/>
                 </ColumnLayout>
             </ContentLayout>

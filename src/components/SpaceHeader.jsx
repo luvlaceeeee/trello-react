@@ -1,8 +1,10 @@
 import React from 'react';
 import IconButton from "./UI/IconButton/IconButton";
 import {FiChevronDown} from "react-icons/fi";
+import {useSpace} from "../store/store";
 
 const SpaceHeader = () => {
+    const boards = useSpace(state => state.boards)
     return (
         <div className='p-2 inline-flex items-center space-x-2'>
             <div>
@@ -12,7 +14,7 @@ const SpaceHeader = () => {
                 </div>
 
                 <div className='text-zinc-400'>
-                    <span>{3} Running Projects</span>
+                    <span>{boards.length} Running Projects</span>
                 </div>
             </div>
         </div>
