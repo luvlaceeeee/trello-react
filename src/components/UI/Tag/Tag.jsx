@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Tag = ({title}) => {
+const Tag = ({title, color}) => {
     return (
-        <div className={"bg-amber-200 text-amber-600 text-xs font-bold px-2.5 py-0.5 rounded h-5 text-center flex items-center"}>
+        <div className={`${color} mr-1 mb-1 grow-0 shrink-0 text-xs font-bold px-2.5 py-1 h-5.5 rounded text-center flex items-center`}>
             {title}
         </div>
     );
