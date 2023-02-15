@@ -31,5 +31,6 @@ export const useBoard = create((set, get) => ({
             ]},
 
     ],
+    // addTask:
 }))
 

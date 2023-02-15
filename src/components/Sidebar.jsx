@@ -8,7 +8,7 @@ import {
     FiLogOut,
     FiMessageSquare
 } from "react-icons/fi";
-import ButtonMenu from "./UI/Button/ButtonMenu";
+import ButtonMenu from "./UI/ButtonMenu/ButtonMenu";
 import {useSidebar} from "../store/store";
 
 const buttons = [

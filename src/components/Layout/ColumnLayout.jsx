@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonMenu from "../UI/Button/ButtonMenu";
+import ButtonMenu from "../UI/ButtonMenu/ButtonMenu";
 import {FiCodesandbox} from "react-icons/fi";
 
 const ColumnLayout = ({children}) => {
