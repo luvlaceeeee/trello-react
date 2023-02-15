@@ -10,9 +10,10 @@ import {
 } from "react-icons/fi";
 import ButtonMenu from "./UI/ButtonMenu/ButtonMenu";
 import {useSidebar} from "../store/store";
+import {Link} from "react-router-dom";
 
 const buttons = [
-    {title: 'Space', icon: <FiCodesandbox size={20}/>},
+    {title: 'Space', icon: <FiCodesandbox size={20}/>, link:'/'},
     // {title: 'Dashboard', icon: <FiLayout size={20}/>},
     // {title: 'Schedule', icon: <FiList size={20}/>},
     // {title: 'Inbox', icon: <FiMessageSquare size={20}/>},
@@ -35,18 +36,20 @@ const Sidebar = () => {
                     </div>
                     <div className='flex flex-col items-center justify-center p-2 space-y-5'>
                         {buttons.map((button, i) =>
-                            <button type="button"
-                                    key={i}
-                                    className="text-zinc-900 bg-white hover:bg-zinc-900 hover:text-white font-bold rounded-xl text-sm p-3 px-4 w-10/12
-                                        text-center flex items-center transition-colors ease-in-out duration-300 focus:bg-zinc-900 focus:text-white">
-                                <div className="mr-3">
-                                    {button.icon}
-                                </div>
+                            <Link to={button.link}>
+                                <button type="button"
+                                        key={i}
+                                        className="text-zinc-900 bg-white hover:bg-zinc-900 hover:text-white font-bold rounded-xl text-sm p-3 px-4 w-10/12
+                                            text-center flex items-center transition-colors ease-in-out duration-300 focus:bg-zinc-900 focus:text-white">
+                                    <div className="mr-3">
+                                        {button.icon}
+                                    </div>
 
-                                <div className={`whitespace-pre duration-300 ${!isOpen && 'opacity-0 translate-x-16 overflow-hidden'}`}>
-                                    {button.title}
-                                </div>
-                            </button>
+                                    <div className={`whitespace-pre duration-300 ${!isOpen && 'opacity-0 translate-x-16 overflow-hidden'}`}>
+                                        {button.title}
+                                    </div>
+                                </button>
+                            </Link>
                         )}
                     </div>
                 </div>
