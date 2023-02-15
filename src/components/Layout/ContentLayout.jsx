@@ -1,7 +1,7 @@
 import React from 'react';
-import {useSidebar} from "../store/store";
+import {useSidebar} from "../../store/store";
 
-const Content = ({children}) => {
+const ContentLayout = ({children}) => {
     const isOpen = useSidebar(state => state.isOpen)
 
     return (
@@ -11,4 +11,4 @@ const Content = ({children}) => {
     );
 };
 
-export default Content;
+export default ContentLayout;

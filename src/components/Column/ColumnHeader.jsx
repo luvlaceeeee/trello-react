@@ -1,6 +1,6 @@
 import React from 'react';
-import Badge from "./UI/Badge/Badge";
-import {colors} from "../enum/colors";
+import Badge from "../UI/Badge/Badge";
+import {colors} from "../../enum/colors";
 import {FiPlus} from "react-icons/fi";
 
 const ColumnHeader = ({badgeTitle, taskNumber, color}) => {

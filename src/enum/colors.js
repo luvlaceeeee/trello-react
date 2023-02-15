@@ -27,6 +27,12 @@ export const colors = {
         text: 'text-green-700',
         tag: 'bg-green-200 text-green-600',
         badge: ['bg-green-700', 'border-green-700']
+    },
+    black:{
+        bg: 'bg-zinc-900',
+        border: 'border-zinc-900',
+        text: 'text-zinc-900',
+        tag: 'bg-green-200 text-green-600',
+        badge: ['bg-zinc-900', 'border-zinc-900']
     }
-
 }
