@@ -1,7 +1,7 @@
 import React from 'react';
-import IconButton from "./UI/IconButton/IconButton";
+import IconButton from "../UI/IconButton/IconButton";
 import {FiChevronDown} from "react-icons/fi";
-import {useBoard} from "../store/store";
+import {useBoard} from "../../store/store";
 
 const BoardHeader = ({title, members, columns}) => {
 

@@ -7,9 +7,10 @@ import App from "../App";
 import Column from "../components/Column/Column";
 import HeaderLayout from "../components/Layout/HeaderLayout";
 import ColumnLayout from "../components/Layout/ColumnLayout";
-import BoardHeader from "../components/BoardHeader";
+import BoardHeader from "../components/Board/BoardHeader";
 import {colors} from "../enum/colors";
 import {useBoard} from "../store/store";
+import LoadingScreen from "../components/UI/LoadingScreen";
 
 const Board = () => {
     const columns = useBoard(state => state.column)
@@ -18,8 +19,6 @@ const Board = () => {
 
     return (
         <div>
-            <Sidebar/>
-
             <ContentLayout>
                 <HeaderLayout>
                     <BoardHeader title={title} columns={columns} members={members}/>

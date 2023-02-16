@@ -10,22 +10,16 @@ import {
 } from "react-icons/fi";
 import ButtonMenu from "./UI/ButtonMenu/ButtonMenu";
 import {useSidebar} from "../store/store";
-import {Link} from "react-router-dom";
-
-const buttons = [
-    {title: 'Space', icon: <FiCodesandbox size={20}/>, link:'/'},
-    {title: 'Dashboard', icon: <FiLayout size={20}/>},
-    {title: 'Schedule', icon: <FiList size={20}/>},
-    {title: 'Inbox', icon: <FiMessageSquare size={20}/>},
-    {title: 'Teams', icon: <FiGitPullRequest size={20}/>},
-]
+import {Link, Outlet} from "react-router-dom";
 
 const Sidebar = () => {
 
     const setOpen = useSidebar((state) => state.setOpen)
     const isOpen = useSidebar(state => state.isOpen)
+    const buttons = useSidebar((state => state.buttons))
 
     return (
+        <>
         <div className={`${isOpen ? 'w-60' : 'w-28'} p-4 bg-white text-black absolute top-0 left-0 bottom-0 border-r-2 border-zinc-400 border-opacity-20 transition-all ease-out duration-300`}>
             <div className='flex flex-col justify-between items-center h-full'>
                 <div className='w-full'>
@@ -70,6 +64,9 @@ const Sidebar = () => {
 
             </div>
         </div>
+
+        <Outlet/>
+        </>
     );
 };
 

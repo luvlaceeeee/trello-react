@@ -1,22 +1,24 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Sidebar from "../components/Sidebar";
 import ContentLayout from "../components/Layout/ContentLayout";
 import HeaderLayout from "../components/Layout/HeaderLayout";
-import BoardHeader from "../components/BoardHeader";
+import BoardHeader from "../components/Board/BoardHeader";
 import ColumnLayout from "../components/Layout/ColumnLayout";
 import Column from "../components/Column/Column";
 import SpaceHeader from "../components/SpaceHeader";
-import BoardColumn from "../components/BoardColumn";
-import AddColumn from "../components/AddColumn";
+import BoardColumn from "../components/Board/BoardColumn";
+import AddColumn from "../components/Board/AddColumn";
 import {Link} from "react-router-dom";
-import Modal from "../components/Modal";
+import Modal from "../components/Modal/Modal";
 import {useSpace} from "../store/store";
+import axios from "axios";
+import LoadingScreen from "../components/UI/LoadingScreen";
 
 const Space = () => {
     const boards = useSpace(state => state.boards)
     return (
         <div>
-            <Sidebar/>
+            <LoadingScreen isLoading={false}/>
 
             <ContentLayout>
                 <HeaderLayout>
@@ -29,7 +31,6 @@ const Space = () => {
                                 <BoardColumn title={board.title}/>
                             </Link>
                         })}
-                        {/*<BoardColumn title={'Agile board'}/>*/}
                     <AddColumn title={'Add new board'}/>
                 </ColumnLayout>
             </ContentLayout>

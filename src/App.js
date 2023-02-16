@@ -8,13 +8,16 @@ import Board from "./pages/Board";
 import React from "react";
 import Space from "./pages/Space";
 import {Route, Routes} from "react-router-dom";
+import Sidebar from "./components/Sidebar";
 
 
 function App() {
   return (
       <Routes>
-          <Route path='/' element={<Space />}/>
-          <Route path='/board' element={<Board />}/>
+          <Route path='/' element={<Sidebar/>}>
+            <Route index element={<Space />}/>
+            <Route path='board' element={<Board />}/>
+          </Route>
       </Routes>
   );
 }

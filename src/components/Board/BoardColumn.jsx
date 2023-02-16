@@ -1,7 +1,7 @@
 import React from 'react';
-import ColumnHeader from "./Column/ColumnHeader";
-import {colors} from "../enum/colors";
-import Task from "./Column/Task";
+import ColumnHeader from "../Column/ColumnHeader";
+import {colors} from "../../enum/colors";
+import Task from "../Column/Task";
 
 const BoardColumn = ({title}) => {
     return (
