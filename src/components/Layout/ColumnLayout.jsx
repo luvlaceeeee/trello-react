@@ -4,7 +4,7 @@ import {FiCodesandbox} from "react-icons/fi";
 
 const ColumnLayout = ({children}) => {
     return (
-        <div className="p-4 flex space-x-3 overflow-auto scroll-smooth flex-1">
+        <div className="scrollbar p-4 flex space-x-3 overflow-auto scroll-smooth flex-1">
             {children}
         </div>
     );
