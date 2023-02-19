@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Sidebar from "../components/Sidebar";
 import ContentLayout from "../components/Layout/ContentLayout";
 import HeaderLayout from "../components/Layout/HeaderLayout";
-import BoardHeader from "../components/Board/BoardHeader";
+import BoardHeader from "../components/Column/BoardHeader";
 import ColumnLayout from "../components/Layout/ColumnLayout";
 import Column from "../components/Column/Column";
 import SpaceHeader from "../components/SpaceHeader";

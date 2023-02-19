@@ -5,7 +5,6 @@ export const colors = {
       text: 'text-blue-700',
       tag: 'bg-blue-200 text-blue-600',
       badge: ['bg-blue-700', 'border-blue-700']
-
     },
     orange:{
         bg: 'bg-orange-700',

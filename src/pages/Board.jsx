@@ -7,13 +7,13 @@ import App from "../App";
 import Column from "../components/Column/Column";
 import HeaderLayout from "../components/Layout/HeaderLayout";
 import ColumnLayout from "../components/Layout/ColumnLayout";
-import BoardHeader from "../components/Board/BoardHeader";
+import BoardHeader from "../components/Column/BoardHeader";
 import {colors} from "../enum/colors";
 import {useBoard} from "../store/store";
 import LoadingScreen from "../components/UI/LoadingScreen";
 
 const Board = () => {
-    const columns = useBoard(state => state.column)
+    const boards = useBoard(state => state.column)
     const title = useBoard(state => state.title)
     const members = useBoard(state => state.members)
 
@@ -21,11 +21,11 @@ const Board = () => {
         <div>
             <ContentLayout>
                 <HeaderLayout>
-                    <BoardHeader title={title} columns={columns} members={members}/>
+                    <BoardHeader title={title} columns={boards} members={members}/>
                 </HeaderLayout>
 
                 <ColumnLayout>
-                    {columns.map(column => {
+                    {boards.map(column => {
                         return <Column title={column.title} tasks={column.tasks}/>
                     })}
                 </ColumnLayout>

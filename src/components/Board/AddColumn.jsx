@@ -3,7 +3,7 @@ import IconButton from "../UI/IconButton/IconButton";
 import { FiCodesandbox, FiPlus, FiMoreVertical } from "react-icons/fi";
 import Modal from "../Modal/Modal";
 import {useModal} from "../../store/store";
-import AddModal from "../Modal/AddModal";
+import AddModal from "./AddModal";
 
 
 const AddColumn = ({title}) => {
