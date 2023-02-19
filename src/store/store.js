@@ -19,10 +19,16 @@ export const useSidebar = create((set, get) => ({
 }))
 
 export const useSpace = create((set, get) => ({
+
     loading: false,
     boards: [
-        {id: 1, title: 'Agile board'},
-        {id: 1, title: 'Create UI'},
+        {id: 1, title: 'Agile board', role:'creator'},
+        {id: 1, title: 'Create UI', role:'admin'},
+        {id: 1, title: 'Create UI', role:'admin'},
+        {id: 1, title: 'Create UI', role:'admin'},
+        {id: 1, title: 'Create UI', role:'admin'},
+        {id: 1, title: 'Create UI', role:'admin'},
+        {id: 1, title: 'User board', role:'user'},
         // {id: 1, title: 'Create UX'},
         // {id: 1, title: 'Functional'}
     ],
