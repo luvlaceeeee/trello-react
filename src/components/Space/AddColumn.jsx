@@ -3,17 +3,18 @@ import IconButton from "../UI/IconButton/IconButton";
 import { FiCodesandbox, FiPlus, FiMoreVertical } from "react-icons/fi";
 import Modal from "../Modal/Modal";
 import {useModal} from "../../store/store";
-import AddModal from "./AddModal";
+import AddModal from "../Modal/AddModal";
 
 
 const AddColumn = ({title}) => {
-    // const openAddModal = useModal(state => state.setOpen)
+    const closeAddModal = useModal(state => state.setOpen)
+    const isOpen = useModal(state => state.isOpen)
 
-    const [isOpen, setOpen] = useState(false)
-
-    const closeAddModal = () => {
-        setOpen(!isOpen)
-    }
+    // const [isOpen, setOpen] = useState(false)
+    //
+    // const closeAddModal = () => {
+    //     setOpen(!isOpen)
+    // }
 
     return (
         <div>

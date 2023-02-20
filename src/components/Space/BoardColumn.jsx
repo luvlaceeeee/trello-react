@@ -4,13 +4,12 @@ import {colors} from "../../enum/colors";
 import Task from "../Column/Task";
 import ButtonsGroupHeader from "./ButtonsGroupHeader";
 import {Link} from "react-router-dom";
-import AddModal from "../Modal/AddModal";
 import Modal from "../Modal/Modal";
 import {useModal} from "../../store/store";
 import RenameModal from "../Modal/RenameModal";
 import DeleteModal from "../Modal/DeleteModal";
 
-const BoardColumn = ({title}) => {
+const BoardColumn = ({title, id}) => {
     // const openModal = useModal(state => state.setOpen)
     const [isRenameOpen, setRenameOpen] = useState(false)
     const [isDeleteOpen, setDeleteOpen] = useState(false)
@@ -33,7 +32,7 @@ const BoardColumn = ({title}) => {
                 <DeleteModal title={title} onClick={closeDeleteModal}/>
             </Modal>
 
-            <Link to='/board'>
+            <Link to={`/board/${id}`}>
                 <button>
                     <div className='bg-zinc-100 flex flex-col border-2 border-b-0 text-zinc-700 text-center justify-center items-center w-72 h-36 rounded-t-lg p-4 pb-4 shadow-lg space-y-4 hover:border-zinc-300 hover:bg-zinc-300 transition-colors ease-in-out duration-300'>
                         <span className='font-medium text-2xl'>{title}</span>

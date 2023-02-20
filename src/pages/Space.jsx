@@ -16,6 +16,13 @@ import LoadingScreen from "../components/UI/LoadingScreen";
 
 const Space = () => {
     const boards = useSpace(state => state.boards)
+    const fetchBoards = useSpace(state => state.fetchBoards)
+    console.log(boards)
+
+    useEffect(() => {
+        fetchBoards(1)
+    }, [])
+
     return (
         <div>
             <LoadingScreen isLoading={false}/>
@@ -31,7 +38,7 @@ const Space = () => {
                     </div>
                     <ColumnLayout>
                             {boards.map(board => {
-                                return <BoardColumn title={board.title}/>
+                                return <BoardColumn title={board.title} id={board.id}/>
                             })}
                         <AddColumn title={'Add new board'}/>
                     </ColumnLayout>
@@ -53,4 +60,5 @@ const Space = () => {
     );
 };
 
-export default Space;
+
+export {Space};

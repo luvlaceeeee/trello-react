@@ -10,7 +10,7 @@ const AddModal = () => {
     const isLoading = useSpace(state => state.loading)
 
     const addBoard2 = () => {
-        addBoard(board.title)
+        addBoard(board.title, 1)
         setBoard({title: ''})
     }
 

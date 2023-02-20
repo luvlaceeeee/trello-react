@@ -2,7 +2,7 @@ import React from 'react';
 import IconButton from "../UI/IconButton/IconButton";
 import {FiChevronDown} from "react-icons/fi";
 import {useBoard} from "../../store/store";
-import ButtonsGroupHeaderBoard from "./ButtonsGroupHeaderBoard";
+import ButtonsGroupHeaderBoard from "../Board/ButtonsGroupHeaderBoard";
 
 const BoardHeader = ({title, members, columns}) => {
 

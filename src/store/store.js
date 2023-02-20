@@ -6,7 +6,7 @@ import axios from "axios";
 
 export const useSidebar = create((set, get) => ({
     buttons: [
-        {title: 'Space', icon: <FiCodesandbox size={20}/>, link:'/'},
+        {title: 'Space', icon: <FiCodesandbox size={20}/>, link:'/space'},
         // {title: 'Dashboard', icon: <FiLayout size={20}/>},
         // {title: 'Schedule', icon: <FiList size={20}/>},
         // {title: 'Inbox', icon: <FiMessageSquare size={20}/>},
@@ -18,41 +18,6 @@ export const useSidebar = create((set, get) => ({
     }
 }))
 
-export const useSpace = create((set, get) => ({
-
-    loading: false,
-    boards: [
-        {id: 1, title: 'Agile board', role:'creator'},
-        {id: 1, title: 'Create UI', role:'admin'},
-        {id: 1, title: 'Create UI', role:'admin'},
-        {id: 1, title: 'Create UI', role:'admin'},
-        {id: 1, title: 'Create UI', role:'admin'},
-        {id: 1, title: 'Create UI', role:'admin'},
-        {id: 1, title: 'User board', role:'user'},
-        // {id: 1, title: 'Create UX'},
-        // {id: 1, title: 'Functional'}
-    ],
-    addBoard: async (title, userId) => {
-        userId = 3
-        set({loading: true})
-        const post = axios.post(`http://176.212.185.97:7841/${userId}/boards`, {
-            title: title
-        })
-            .then(function (response) {
-                const {data} = response
-                set({boards: [...get().boards, data]})
-                console.log(data)
-                set({loading: false})
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    },
-    fetchBoards: async (userId) => {
-        // fetch board by id
-    }
-}))
-
 export const useModal = create((set, get) => ({
     isOpen: false,
     setOpen: () => {
@@ -60,7 +25,51 @@ export const useModal = create((set, get) => ({
     },
 }))
 
+export const useSpace = create((set, get) => ({
+    loading: false,
+    boards: [
+        // {id: 1, title: 'Agile board', role:'creator'},
+        // {id: 1, title: 'Create UI', role:'admin'},
+        // {id: 1, title: 'User board', role:'user'},
+        // {id: 1, title: 'Create UX'},
+        // {id: 1, title: 'Functional'}
+    ],
+    addBoard: async (title, userId) => {
+        try {
+            const response = await axios.post('http://176.212.185.97:7841/boards',{
+                title: title
+            } ,{
+                params: {
+                    userId: userId,
+                }
+            })
+            set({boards: [...get().boards, response.data]})
+            console.log(response.data)
+        } catch (e) {
+            console.log(e);
+        } finally {
+
+        }
+    },
+    fetchBoards: async (userId) => {
+        try {
+            const response = await axios.get('http://176.212.185.97:7841/boards', {
+                params: {
+                    userId: userId,
+                }
+            })
+            set({boards: [...response.data]})
+            console.log(response.data)
+        } catch (e) {
+            console.log(e);
+        } finally {
+
+        }
+    }
+}))
+
 export const useBoard = create((set, get) => ({
+    id: '',
     title: 'RNI Studio Space',
     members: ['Avilio Bruno','Avilio Bruno','Avilio Bruno','Avilio Bruno','Avilio Bruno'],
     column: [
@@ -101,5 +110,20 @@ export const useBoard = create((set, get) => ({
                     title: 'Submit design'}
             ]},
     ],
+    fetchBoard: async (userId, boardId) => {
+        try {
+            const response = await axios.get(`http://176.212.185.97:7841/boards/${boardId}`, {
+                params: {
+                    userId: userId,
+                }
+            })
+            set({id: response.data.title, title: response.data.title,  column: response.data.columns})
+            console.log(response.data)
+        } catch (e) {
+            console.log(e);
+        } finally {
+
+        }
+    }
 }))
 
