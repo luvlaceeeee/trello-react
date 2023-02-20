@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useModal, useSpace} from "../../store/store";
+import {useAddModal, useSpace} from "../../store/store";
 import { FiX } from "react-icons/fi";
 
 const Modal = ({children, isOpen, setOpen}) => {

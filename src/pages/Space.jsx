@@ -7,17 +7,22 @@ import ColumnLayout from "../components/Layout/ColumnLayout";
 import Column from "../components/Column/Column";
 import SpaceHeader from "../components/Space/SpaceHeader";
 import BoardColumn from "../components/Space/BoardColumn";
-import AddColumn from "../components/Space/AddColumn";
+import AddBoardColumn from "../components/Space/AddBoardColumn";
 import {Link} from "react-router-dom";
 import Modal from "../components/Modal/Modal";
-import {useSpace} from "../store/store";
+import {useSpace, useUser} from "../store/store";
 import axios from "axios";
 import LoadingScreen from "../components/UI/LoadingScreen";
+import {useQuery} from "@tanstack/react-query";
+import {getAllBoards, test} from "../API/Service";
 
 const Space = () => {
-    const boards = useSpace(state => state.boards)
+    // const userId = useUser(state => state.userId)
+
+    // const { isLoading, error, data} = useQuery(['boards', userId], () => getAllBoards(userId));
+
+    const data = useSpace(state => state.boards)
     const fetchBoards = useSpace(state => state.fetchBoards)
-    console.log(boards)
 
     useEffect(() => {
         fetchBoards(1)
@@ -37,10 +42,10 @@ const Space = () => {
                         <hr/>
                     </div>
                     <ColumnLayout>
-                            {boards.map(board => {
+                            {data.map(board => {
                                 return <BoardColumn title={board.title} id={board.id}/>
                             })}
-                        <AddColumn title={'Add new board'}/>
+                        <AddBoardColumn title={`Add new board`}/>
                     </ColumnLayout>
 
                     {/*<div className='p-5 pb-1'>*/}
@@ -51,7 +56,7 @@ const Space = () => {
                     {/*    {boards.map(board => {*/}
                     {/*        if (board.role === 'creator') return <BoardColumn title={board.title}/>*/}
                     {/*    })}*/}
-                    {/*    <AddColumn title={'Add new board'}/>*/}
+                    {/*    <AddBoardColumn title={'Add new board'}/>*/}
                     {/*</ColumnLayout>*/}
 
                 {/*</div>*/}

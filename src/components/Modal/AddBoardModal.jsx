@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {FiX} from "react-icons/fi";
-import {useModal, useSpace} from "../../store/store";
+import {useAddModal, useSpace} from "../../store/store";
 
-const AddModal = () => {
+const AddBoardModal = () => {
     const [board, setBoard] = useState({title:''})
 
     // const closeAddModal = useAddModal(state => state.setOpen)
@@ -47,4 +47,4 @@ const AddModal = () => {
     );
 };
 
-export default AddModal;
+export default AddBoardModal;

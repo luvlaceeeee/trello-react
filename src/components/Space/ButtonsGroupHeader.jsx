@@ -1,8 +1,8 @@
 import React from 'react';
-import {useModal, useSpace} from "../../store/store";
+import {useAddModal, useSpace} from "../../store/store";
 
 const ButtonsGroupHeader = () => {
-    const openAddModal = useModal(state => state.setOpen)
+    const openAddModal = useAddModal(state => state.setOpen)
     const boards = useSpace(state => state.boards)
 
     return (

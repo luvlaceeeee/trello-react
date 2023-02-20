@@ -3,32 +3,23 @@ import {colors} from "../enum/colors";
 import {FiCodesandbox, FiGitPullRequest, FiLayout, FiList, FiMessageSquare} from "react-icons/fi";
 import React from "react";
 import axios from "axios";
+import {devtools} from "zustand/middleware";
+import {immer} from "zustand/middleware/immer";
+import {persist} from "zustand/middleware";
 
-export const useSidebar = create((set, get) => ({
-    buttons: [
-        {title: 'Space', icon: <FiCodesandbox size={20}/>, link:'/space'},
-        // {title: 'Dashboard', icon: <FiLayout size={20}/>},
-        // {title: 'Schedule', icon: <FiList size={20}/>},
-        // {title: 'Inbox', icon: <FiMessageSquare size={20}/>},
-        // {title: 'Teams', icon: <FiGitPullRequest size={20}/>},
-    ],
-    isOpen: false,
-    setOpen: () => {
-        set({isOpen: !get().isOpen})
+export const useUser = create(
+    persist((set, get) => ({
+    userId: null,
+    addUserId: () => {
+        set({userId: 1})
     }
-}))
-
-export const useModal = create((set, get) => ({
-    isOpen: false,
-    setOpen: () => {
-        set({isOpen: !get().isOpen})
-    },
-}))
+}), {name: 'user-storage', version: 1}
+    ))
 
 export const useSpace = create((set, get) => ({
     loading: false,
     boards: [
-        // {id: 1, title: 'Agile board', role:'creator'},
+        {id: 1, title: 'Agile board', role:'creator'},
         // {id: 1, title: 'Create UI', role:'admin'},
         // {id: 1, title: 'User board', role:'user'},
         // {id: 1, title: 'Create UX'},
@@ -127,3 +118,31 @@ export const useBoard = create((set, get) => ({
     }
 }))
 
+export const useSidebar = create((set, get) => ({
+    buttons: [
+        {title: 'Space', icon: <FiCodesandbox size={20}/>, link:'/space'},
+        // {title: 'Dashboard', icon: <FiLayout size={20}/>},
+        // {title: 'Schedule', icon: <FiList size={20}/>},
+        // {title: 'Inbox', icon: <FiMessageSquare size={20}/>},
+        // {title: 'Teams', icon: <FiGitPullRequest size={20}/>},
+    ],
+    isOpen: false,
+    setOpen: () => {
+        set({isOpen: !get().isOpen})
+    }
+}))
+
+export const useBoardModal = create((set, get) => ({
+    isOpen: false,
+    content: '',
+    setOpen: (content) => {
+        set({isOpen: !get().isOpen, content: content})
+    }
+}))
+
+export const useAddModal = create((set, get) => ({
+    isOpen: false,
+    setOpen: () => {
+        set({isOpen: !get().isOpen})
+    },
+}))

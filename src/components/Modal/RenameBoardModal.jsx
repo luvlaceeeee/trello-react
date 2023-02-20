@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const RenameModal = ({title}) => {
+const RenameBoardModal = ({title}) => {
     const [name, setName] = useState({title: title})
 
     return (
@@ -27,4 +27,4 @@ const RenameModal = ({title}) => {
     );
 };
 
-export default RenameModal;
+export default RenameBoardModal;

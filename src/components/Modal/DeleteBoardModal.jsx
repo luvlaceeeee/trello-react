@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DeleteModal = ({title, onClick}) => {
+const DeleteBoardModal = ({title, onClick}) => {
     return (
         <div className="relative mx-auto my-20 bg-white rounded-2xl shadow-2xl w-96">
             <div className="px-6 py-6 lg:px-8">
@@ -25,4 +25,4 @@ const DeleteModal = ({title, onClick}) => {
     );
 };
 
-export default DeleteModal;
+export default DeleteBoardModal;

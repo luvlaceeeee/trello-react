@@ -5,9 +5,9 @@ import Task from "../Column/Task";
 import ButtonsGroupHeader from "./ButtonsGroupHeader";
 import {Link} from "react-router-dom";
 import Modal from "../Modal/Modal";
-import {useModal} from "../../store/store";
-import RenameModal from "../Modal/RenameModal";
-import DeleteModal from "../Modal/DeleteModal";
+import {useAddModal} from "../../store/store";
+import RenameBoardModal from "../Modal/RenameBoardModal";
+import DeleteBoardModal from "../Modal/DeleteBoardModal";
 
 const BoardColumn = ({title, id}) => {
     // const openModal = useModal(state => state.setOpen)
@@ -25,11 +25,11 @@ const BoardColumn = ({title, id}) => {
     return (
         <div className='flex flex-col'>
             <Modal isOpen={isRenameOpen} setOpen={closeRenameModal}>
-                <RenameModal title={title}/>
+                <RenameBoardModal title={title}/>
             </Modal>
 
             <Modal isOpen={isDeleteOpen} setOpen={closeDeleteModal}>
-                <DeleteModal title={title} onClick={closeDeleteModal}/>
+                <DeleteBoardModal title={title} onClick={closeDeleteModal}/>
             </Modal>
 
             <Link to={`/board/${id}`}>
