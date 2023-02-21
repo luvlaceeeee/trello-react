@@ -1,5 +1,5 @@
 import React from 'react';
-import {useBoardModal} from "../../store/store";
+import {useBoardModal} from "../../store/uiStore";
 
 const ButtonsGroupHeaderBoard = () => {
     const setOpen = useBoardModal(state => state.setOpen)

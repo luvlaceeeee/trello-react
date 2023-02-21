@@ -1,7 +1,7 @@
 import React from 'react';
 import IconButton from "../UI/IconButton/IconButton";
 import {FiChevronDown} from "react-icons/fi";
-import {useBoard} from "../../store/store";
+import {useBoard} from "../../store/uiStore";
 import ButtonsGroupHeaderBoard from "../Board/ButtonsGroupHeaderBoard";
 
 const BoardHeader = ({title, members, columns}) => {
@@ -19,6 +19,7 @@ const BoardHeader = ({title, members, columns}) => {
                         <span>{columns.length} Running Projects</span>
                     </div>
                 </div>
+
                 {/*<div className="flex -space-x-4">*/}
                 {/*    <img className="w-10 h-10 rounded-full border-2 border-amber-50"*/}
                 {/*         src="https://sun9-56.userapi.com/impg/3BZG-0t0fSKpY-Q6_Y6NyWwqe8hAgeowXuXEDQ/P2tURnFvRw0.jpg?size=725x677&quality=95&sign=009bcd00a8b1b87d1e6199e5fc17080e&type=album" alt=""/>*/}
@@ -28,18 +29,19 @@ const BoardHeader = ({title, members, columns}) => {
                 {/*        <span>+50</span>*/}
                 {/*    </div>*/}
                 {/*</div>*/}
-                <div className='flex flex-col justify-between items-start space-y-1'>
-                    <span className='text-gray-700 text-lg'>Members:</span>
-                    <div className='text-s, text-zinc-400'>
-                        {members.map((member, i) => {
-                            if (i !== members.length - 1){
-                                return  member + ', '
-                            } else {
-                                return member + '.'
-                            }
-                        })}
-                    </div>
-                </div>
+
+                {/*<div className='flex flex-col justify-between items-start space-y-1'>*/}
+                {/*    <span className='text-gray-700 text-lg'>Members:</span>*/}
+                {/*    <div className='text-s, text-zinc-400'>*/}
+                {/*        {members.map((member, i) => {*/}
+                {/*            if (i !== members.length - 1){*/}
+                {/*                return  member + ', '*/}
+                {/*            } else {*/}
+                {/*                return member + '.'*/}
+                {/*            }*/}
+                {/*        })}*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
             <ButtonsGroupHeaderBoard/>
         </div>

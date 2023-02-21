@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
+import {useSpaceModal} from "../../store/uiStore";
 
-const RenameBoardModal = ({title}) => {
-    const [name, setName] = useState({title: title})
+const RenameBoardModal = () => {
+    const [name, setName] = useState({title: ''})
 
     return (
         <div className="relative mx-auto my-20 bg-white rounded-2xl shadow-2xl w-96">

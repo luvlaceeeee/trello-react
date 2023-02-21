@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSidebar} from "../../store/store";
+import {useSidebar} from "../../store/uiStore";
 
 const ContentLayout = ({children}) => {
     const isOpen = useSidebar(state => state.isOpen)

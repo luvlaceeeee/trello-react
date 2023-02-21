@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {FiX} from "react-icons/fi";
-import {useAddModal, useSpace} from "../../store/store";
+import {useSpace} from "../../store/store";
 
 const AddBoardModal = () => {
     const [board, setBoard] = useState({title:''})

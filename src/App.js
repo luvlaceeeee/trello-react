@@ -25,7 +25,7 @@ function App() {
             <Route path='/welcome' element={<WelcomePage/>}/>
             <Route path='/' element={<Sidebar/>}>
                 <Route path='/space' element={<Space />}/>
-                <Route path='/board/:id' element={<Board />}/>
+                <Route path='/board/:boardId' element={<Board />}/>
             </Route>
         </Routes>
       </QueryClientProvider>

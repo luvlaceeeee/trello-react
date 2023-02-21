@@ -10,32 +10,48 @@ import BoardColumn from "../components/Space/BoardColumn";
 import AddBoardColumn from "../components/Space/AddBoardColumn";
 import {Link} from "react-router-dom";
 import Modal from "../components/Modal/Modal";
+import {useBoardModal, useSpaceModal} from "../store/uiStore";
 import {useSpace, useUser} from "../store/store";
 import axios from "axios";
 import LoadingScreen from "../components/UI/LoadingScreen";
 import {useQuery} from "@tanstack/react-query";
-import {getAllBoards, test} from "../API/Service";
+import {getAllBoards, Service, test} from "../API/Service";
+import DeleteBoardModal from "../components/Modal/DeleteBoardModal";
+import RenameBoardModal from "../components/Modal/RenameBoardModal";
+import AddColumnModal from "../components/Modal/AddColumnModal";
+import AddUserModal from "../components/Modal/AddUserModal";
+import AddBoardModal from "../components/Modal/AddBoardModal";
 
 const Space = () => {
-    // const userId = useUser(state => state.userId)
+    const isOpen = useSpaceModal(state => state.isOpen)
+    const setOpen = useSpaceModal(state => state.setOpen)
 
-    // const { isLoading, error, data} = useQuery(['boards', userId], () => getAllBoards(userId));
+    const userId = useUser(state => state.userId)
 
-    const data = useSpace(state => state.boards)
-    const fetchBoards = useSpace(state => state.fetchBoards)
+    // const data = useSpace(state => state.boards)
+    // const fetchBoards = useSpace(state => state.fetchBoards)
+    //
+    // useEffect(() => {
+    //     fetchBoards(1)
+    // }, [])
 
-    useEffect(() => {
-        fetchBoards(1)
-    }, [])
+    const { isLoading, error, data } = useQuery(["all-boards"], () => test());
+
+    if (isLoading) return (<LoadingScreen isLoading={true}/>)
+    if (error) return "An error has occurred: " + error.message;
 
     return (
         <div>
-            <LoadingScreen isLoading={false}/>
-
             <ContentLayout>
+
+                <Modal isOpen={isOpen} setOpen={setOpen}>
+                    <AddBoardModal/>
+                </Modal>
+
                 <HeaderLayout>
                     <SpaceHeader/>
                 </HeaderLayout>
+
                 {/*<div className='flex flex-col'>*/}
                     <div className='p-5 pb-1'>
                         <span className='block pb-1 font-bold text-lg'>All boards:</span>
