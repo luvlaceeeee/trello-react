@@ -30,6 +30,14 @@ export const useBoardModal = create((set, get) => ({
     }
 }))
 
+export const useColumnModal = create((set, get) => ({
+    isOpen: false,
+    content: '',
+    setOpen: (content) => {
+        set({isOpen: !get().isOpen, content: content})
+    }
+}))
+
 export const useSpaceModal = create((set, get) => ({
     isOpen: false,
     setOpen: () => {

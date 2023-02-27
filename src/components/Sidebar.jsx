@@ -31,9 +31,8 @@ const Sidebar = () => {
 
                     <div className='flex flex-col items-start justify-center p-2 space-y-5'>
                         {buttons.map((button, i) =>
-                            <Link to={button.link}>
+                            <Link to={button.link} key={i}>
                                 <button type="button"
-                                        key={i}
                                         className={`${isOpen ? 'w-full' : 'w-14'} text-zinc-900 bg-white hover:bg-zinc-900 hover:text-white font-bold rounded-xl text-sm p-3 px-4 text-center flex items-center transition-colors ease-in-out duration-300 focus:bg-zinc-900 focus:text-white`}>
                                     <div className="mr-3">
                                         {button.icon}

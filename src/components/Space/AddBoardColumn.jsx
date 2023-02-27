@@ -3,7 +3,7 @@ import IconButton from "../UI/IconButton/IconButton";
 import { FiCodesandbox, FiPlus, FiMoreVertical } from "react-icons/fi";
 import Modal from "../Modal/Modal";
 import {useAddModal, useBoardModal, useSpaceModal} from "../../store/uiStore";
-import AddBoardModal from "../Modal/AddBoardModal";
+import AddBoardModal from "../Modal/SpaceModals/AddBoardModal";
 
 
 const AddBoardColumn = ({title}) => {

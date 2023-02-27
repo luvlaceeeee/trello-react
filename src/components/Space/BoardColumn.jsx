@@ -6,8 +6,8 @@ import ButtonsGroupHeader from "./ButtonsGroupHeader";
 import {Link} from "react-router-dom";
 import Modal from "../Modal/Modal";
 import {useBoardModal, useSpaceModal} from "../../store/uiStore";
-import RenameBoardModal from "../Modal/RenameBoardModal";
-import DeleteBoardModal from "../Modal/DeleteBoardModal";
+import RenameBoardModal from "../Modal/BoardModals/RenameBoardModal";
+import DeleteBoardModal from "../Modal/BoardModals/DeleteBoardModal";
 
 const BoardColumn = ({title, id}) => {
     // const setOpen = useSpaceModal(state => state.setOpen)

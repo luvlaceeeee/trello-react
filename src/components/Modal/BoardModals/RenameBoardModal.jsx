@@ -1,8 +1,26 @@
 import React, {useState} from 'react';
-import {useSpaceModal} from "../../store/uiStore";
+import {useSpaceModal} from "../../../store/uiStore";
+import {useUser} from "../../../store/store";
+import {useNavigate, useParams} from "react-router-dom";
+import {useMutation} from "@tanstack/react-query";
+import {deleteBoardById, updateBoardById} from "../../../API/Service";
+import ButtonLoader from "../../UI/ButtonLoader";
 
-const RenameBoardModal = () => {
-    const [name, setName] = useState({title: ''})
+const RenameBoardModal = ({refetch, onClick, title}) => {
+    const [name, setName] = useState({title: title})
+    const userId = useUser(state => state.userId)
+    const {boardId} = useParams()
+
+    const mutation = useMutation(["rename-board", userId, boardId, name.title], () => updateBoardById(userId, boardId, name.title), {
+        onSuccess: () => {
+            onClick()
+            refetch()
+        }
+    })
+
+    const handleClick = () => {
+        mutation.mutate()
+    };
 
     return (
         <div className="relative mx-auto my-20 bg-white rounded-2xl shadow-2xl w-96">
@@ -19,8 +37,8 @@ const RenameBoardModal = () => {
                                placeholder="Name your board" required/>
                     </div>
 
-                    <button  type="submit" className="w-full text-white bg-zinc-700 hover:bg-zinc-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                        Rename board
+                    <button onClick={handleClick} className="w-full text-white bg-zinc-700 hover:bg-zinc-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        {!mutation.isLoading ? 'Rename board' : <ButtonLoader/>}
                     </button>
                 </div>
             </div>

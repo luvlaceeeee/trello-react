@@ -31,7 +31,7 @@ export const colors = {
         bg: 'bg-zinc-900',
         border: 'border-zinc-900',
         text: 'text-zinc-900',
-        tag: 'bg-green-200 text-green-600',
+        tag: 'bg-zinc-200 text-zinc-600',
         badge: ['bg-zinc-900', 'border-zinc-900']
     }
 }

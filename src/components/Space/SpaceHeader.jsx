@@ -2,11 +2,11 @@ import React from 'react';
 import IconButton from "../UI/IconButton/IconButton";
 import {FiChevronDown} from "react-icons/fi";
 import {useSpace} from "../../store/store";
-import Dropdown from "../Dropdown";
+import ColumnDropdown from "../ColumnDropdown";
 import ButtonsGroupHeader from "./ButtonsGroupHeader";
 
-const SpaceHeader = () => {
-    const boards = useSpace(state => state.boards)
+const SpaceHeader = ({boards}) => {
+    // const boards = useSpace(state => state.boards)
     return (
         <div className='p-2 flex flex-row justify-between items-center'>
             <div className='space-y-1'>
@@ -18,7 +18,7 @@ const SpaceHeader = () => {
                     <span>{boards.length} Running Projects</span>
                 </div>
             </div>
-            <ButtonsGroupHeader/>
+            <ButtonsGroupHeader boards={boards}/>
         </div>
     );
 };

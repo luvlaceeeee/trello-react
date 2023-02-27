@@ -1,13 +1,10 @@
 import axios from "axios";
 
-// export const Service = {
-//     async test() {
-//         return axios.get('https://jsonplaceholder.typicode.com/todos')
-//     },
-// }
+const BASIC_URL = 'http://localhost:7841'
+axios.defaults.baseURL = BASIC_URL
 
-export const getAllBoards = (userId) => {
-    const {data} = axios.get('http://176.212.185.97:7841/boards', {
+export const getAllBoards = async (userId) => {
+    const {data} = await axios.get('/boards', {
         params: {
             userId: userId,
         }
@@ -15,19 +12,10 @@ export const getAllBoards = (userId) => {
     return data
 }
 
-export const getBoardById = (userId, boardId) => {
-    const {data} = axios.get(`http://176.212.185.97:7841/boards/${boardId}`, {
-        params: {
-            userId: userId,
-        }
-    })
-    return data
-}
-
-export const postBoard = (userId, title) => {
-    const {data} = axios.post(`http://176.212.185.97:7841/boards`, {
+export const createBoard = async (userId, title) => {
+    const { data } = await axios.post('/boards',{
         title: title
-    }, {
+    } ,{
         params: {
             userId: userId,
         }
@@ -35,18 +23,92 @@ export const postBoard = (userId, title) => {
     return data
 }
 
-
-
-export const test = async () => {
-    const {data} = await axios.get('https://jsonplaceholder.typicode.com/todos', {
+export const getBoardById = async (userId, boardId) => {
+    const {data} = await axios.get(`/boards/${boardId}`, {
         params: {
-            _limit: 5
+            userId: userId,
         }
     })
     return data
 }
 
-export const test2 = async (boardId) => {
-    const {data} = await axios.get(`https://jsonplaceholder.typicode.com/todos/${boardId}`)
+export const deleteBoardById = async (userId, boardId) => {
+    const {data} = await axios.delete(`/boards/${boardId}`, {
+        params: {
+            userId: userId,
+        }
+    })
     return data
 }
+
+export const updateBoardById = async (userId, boardId, title) => {
+    const {data} = await axios.put(`/boards/${boardId}`,{
+        title: title
+    } ,{
+        params: {
+            userId: userId,
+        }
+    })
+    return data
+}
+
+export const createColumn = async (userId, boardId, title) => {
+    const { data } = await axios.post(`/columns`,{
+        title: title
+    } ,{
+        params: {
+            userId: userId,
+            boardId: boardId
+        }
+    })
+    return data
+}
+
+export const renameColumn = async (userId, boardId, columnId, title) => {
+    const { data } = await axios.put(`/columns/${columnId}`,{
+        title: title
+    } ,{
+        params: {
+            userId: userId,
+            boardId: boardId
+        }
+    })
+    return data
+}
+
+export const deleteColumn = async (userId, boardId, columnId) => {
+    const { data } = await axios.delete(`/columns/${columnId}`,{
+        params: {
+            userId: userId,
+            boardId: boardId
+        }
+    })
+    return data
+}
+
+export const createTask = async (userId, boardId, columnId, text, desc, tags) => {
+    const { data } = await axios.post(`/tasks`,{
+        text: text,
+        description: desc,
+        tags: tags
+    },{
+        params: {
+            userId: userId,
+            boardId: boardId,
+            columnId: columnId
+        }
+    })
+    return data
+}
+
+export const deleteTask = async (userId, boardId, columnId, taskId) => {
+    const { data } = await axios.delete(`/tasks/${taskId}`,{
+        params: {
+            userId: userId,
+            boardId: boardId,
+            columnId: columnId
+        }
+    })
+    return data
+}
+

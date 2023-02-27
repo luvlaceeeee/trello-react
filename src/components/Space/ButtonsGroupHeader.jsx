@@ -2,8 +2,8 @@ import React from 'react';
 import {useBoardModal, useSpaceModal} from "../../store/uiStore";
 import {useSpace} from "../../store/store";
 
-const ButtonsGroupHeader = () => {
-    const boards = useSpace(state => state.boards)
+const ButtonsGroupHeader = ({boards}) => {
+    // const boards = useSpace(state => state.boards)
     const setOpen = useSpaceModal(state => state.setOpen)
 
     const openAddBoard = () => {

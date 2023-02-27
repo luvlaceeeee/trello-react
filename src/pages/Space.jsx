@@ -16,11 +16,11 @@ import axios from "axios";
 import LoadingScreen from "../components/UI/LoadingScreen";
 import {useQuery} from "@tanstack/react-query";
 import {getAllBoards, Service, test} from "../API/Service";
-import DeleteBoardModal from "../components/Modal/DeleteBoardModal";
-import RenameBoardModal from "../components/Modal/RenameBoardModal";
-import AddColumnModal from "../components/Modal/AddColumnModal";
-import AddUserModal from "../components/Modal/AddUserModal";
-import AddBoardModal from "../components/Modal/AddBoardModal";
+import DeleteBoardModal from "../components/Modal/BoardModals/DeleteBoardModal";
+import RenameBoardModal from "../components/Modal/BoardModals/RenameBoardModal";
+import AddColumnModal from "../components/Modal/BoardModals/AddColumnModal";
+import AddUserModal from "../components/Modal/BoardModals/AddUserModal";
+import AddBoardModal from "../components/Modal/SpaceModals/AddBoardModal";
 
 const Space = () => {
     const isOpen = useSpaceModal(state => state.isOpen)
@@ -35,21 +35,25 @@ const Space = () => {
     //     fetchBoards(1)
     // }, [])
 
-    const { isLoading, error, data } = useQuery(["all-boards"], () => test());
+    const { isLoading, error, data, refetch } = useQuery(["all-boards", userId], () => getAllBoards(userId), {
+        refetchOnWindowFocus: false
+    });
 
-    if (isLoading) return (<LoadingScreen isLoading={true}/>)
-    if (error) return "An error has occurred: " + error.message;
+    if (isLoading) return (
+        <LoadingScreen isLoading={true}/>
+    )
+    // if (error) return "An error has occurred: " + error.message;
 
     return (
         <div>
             <ContentLayout>
 
                 <Modal isOpen={isOpen} setOpen={setOpen}>
-                    <AddBoardModal/>
+                    <AddBoardModal refetch={refetch}/>
                 </Modal>
 
                 <HeaderLayout>
-                    <SpaceHeader/>
+                    <SpaceHeader boards={data}/>
                 </HeaderLayout>
 
                 {/*<div className='flex flex-col'>*/}
@@ -57,9 +61,10 @@ const Space = () => {
                         <span className='block pb-1 font-bold text-lg'>All boards:</span>
                         <hr/>
                     </div>
+
                     <ColumnLayout>
                             {data.map(board => {
-                                return <BoardColumn title={board.title} id={board.id}/>
+                                return <BoardColumn key={board.id} title={board.title} id={board.id}/>
                             })}
                         <AddBoardColumn title={`Add new board`}/>
                     </ColumnLayout>
