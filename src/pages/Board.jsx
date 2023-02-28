@@ -3,7 +3,7 @@ import ContentLayout from "../components/Layout/ContentLayout";
 import Column from "../components/Column/Column";
 import HeaderLayout from "../components/Layout/HeaderLayout";
 import ColumnLayout from "../components/Layout/ColumnLayout";
-import BoardHeader from "../components/Column/BoardHeader";
+import BoardHeader from "../components/Board/BoardHeader";
 import {useBoardModal} from "../store/uiStore";
 import {useBoard, useUser} from "../store/store";
 import LoadingScreen from "../components/UI/LoadingScreen";

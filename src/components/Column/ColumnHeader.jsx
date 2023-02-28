@@ -16,7 +16,7 @@ const ColumnHeader = ({badgeTitle, taskNumber, color, id, setOpen}) => {
         } else {
             setIsOpen(false)
         }
-    }));
+    }), []);
 
 
     return (

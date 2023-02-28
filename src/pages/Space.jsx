@@ -1,25 +1,16 @@
-import React, {useEffect, useState} from 'react';
-import Sidebar from "../components/Sidebar";
+import React from 'react';
 import ContentLayout from "../components/Layout/ContentLayout";
 import HeaderLayout from "../components/Layout/HeaderLayout";
-import BoardHeader from "../components/Column/BoardHeader";
 import ColumnLayout from "../components/Layout/ColumnLayout";
-import Column from "../components/Column/Column";
 import SpaceHeader from "../components/Space/SpaceHeader";
 import BoardColumn from "../components/Space/BoardColumn";
 import AddBoardColumn from "../components/Space/AddBoardColumn";
-import {Link} from "react-router-dom";
 import Modal from "../components/Modal/Modal";
-import {useBoardModal, useSpaceModal} from "../store/uiStore";
-import {useSpace, useUser} from "../store/store";
-import axios from "axios";
+import {useSpaceModal} from "../store/uiStore";
+import {useUser} from "../store/store";
 import LoadingScreen from "../components/UI/LoadingScreen";
 import {useQuery} from "@tanstack/react-query";
-import {getAllBoards, Service, test} from "../API/Service";
-import DeleteBoardModal from "../components/Modal/BoardModals/DeleteBoardModal";
-import RenameBoardModal from "../components/Modal/BoardModals/RenameBoardModal";
-import AddColumnModal from "../components/Modal/BoardModals/AddColumnModal";
-import AddUserModal from "../components/Modal/BoardModals/AddUserModal";
+import {getAllBoards} from "../API/Service";
 import AddBoardModal from "../components/Modal/SpaceModals/AddBoardModal";
 
 const Space = () => {
@@ -27,13 +18,6 @@ const Space = () => {
     const setOpen = useSpaceModal(state => state.setOpen)
 
     const userId = useUser(state => state.userId)
-
-    // const data = useSpace(state => state.boards)
-    // const fetchBoards = useSpace(state => state.fetchBoards)
-    //
-    // useEffect(() => {
-    //     fetchBoards(1)
-    // }, [])
 
     const { isLoading, error, data, refetch } = useQuery(["all-boards", userId], () => getAllBoards(userId), {
         refetchOnWindowFocus: false

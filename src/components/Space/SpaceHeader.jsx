@@ -1,8 +1,4 @@
 import React from 'react';
-import IconButton from "../UI/IconButton/IconButton";
-import {FiChevronDown} from "react-icons/fi";
-import {useSpace} from "../../store/store";
-import ColumnDropdown from "../ColumnDropdown";
 import ButtonsGroupHeader from "./ButtonsGroupHeader";
 
 const SpaceHeader = ({boards}) => {

@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-    FiAlignJustify,
-    FiCodesandbox,
-    FiGitPullRequest,
-    FiLayout,
-    FiList,
-    FiLogOut,
-    FiMessageSquare
-} from "react-icons/fi";
-import ButtonMenu from "./UI/ButtonMenu/ButtonMenu";
+import {FiAlignJustify, FiLogOut} from "react-icons/fi";
 import {useSidebar} from "../store/uiStore";
 import {Link, Outlet} from "react-router-dom";
 
@@ -24,9 +15,9 @@ const Sidebar = () => {
             <div className='flex flex-col justify-between items-center h-full'>
                 <div className='w-full'>
 
-                    <div className={`flex justify-between items-center duration-300 pl-6 p-2 pb-4`}>
+                    <div className={`flex justify-between items-center duration-300 pl-6 p-2 pb-4 h-16`}>
                         <button onClick={setOpen}><FiAlignJustify size={20}/></button>
-                        <Link to='/welcome'><h1 className={`font-black text-3xl block duration-300 ${!isOpen && 'opacity-0 overflow-hidden'}`}>TRL</h1></Link>
+                        <Link to='/welcome'><h1 className={`font-black text-3xl block duration-300 ${!isOpen && 'opacity-0 overflow-hidden hidden'}`}>TRL</h1></Link>
                     </div>
 
                     <div className='flex flex-col items-start justify-center p-2 space-y-5'>
