@@ -31,9 +31,7 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId}) => {
 
     const modalContent = content === 'delete-task' ?
         <DeleteTaskModal refetch={refetch} columnId={columnId} onClick={setModalOpen} taskId={id}
-                           title={title}/> : content === 'update-task' ?
-            <DeleteColumnModal refetch={refetch} onClick={setModalOpen} columnId={id}
-                               title={title}/> : null
+                           title={title}/> : null
 
     return (
         <div className='bg-white flex flex-col justify-between items-start w-full rounded-lg p-4 pb-3 shadow'>

@@ -4,26 +4,10 @@ import {useBoardModal} from "../../store/uiStore";
 const ButtonsGroupHeaderBoard = () => {
     const setOpen = useBoardModal(state => state.setOpen)
 
-    const openDeleteBoard = () => {
-        setOpen('delete')
-    }
-
-    const openAddColumn = () => {
-        setOpen('addColumn')
-    }
-
-    const openRename = () => {
-        setOpen('rename')
-    }
-
-    const openAddUser = () => {
-        setOpen('addUser')
-    }
-
     return (
         <div className='inline-flex rounded-xl shadow' role="group">
             <button type="button"
-                    onClick={openRename}
+                    onClick={() => setOpen('rename')}
                     className="px-4 py-2 text-lg font-medium text-white bg-zinc-900 transition-colors ease-in-out duration-300 border-2 border-zinc-900 rounded-l-2xl hover:bg-white hover:text-zinc-900">
                 Rename board
             </button>
@@ -33,24 +17,21 @@ const ButtonsGroupHeaderBoard = () => {
             {/*    Add user*/}
             {/*</button>*/}
             <button type="button"
-                    onClick={openAddColumn}
+                    onClick={() => setOpen('addColumn')}
                     className="px-4 py-2 text-lg font-medium text-white bg-zinc-900 transition-colors ease-in-out duration-300 border-2 border-zinc-900 hover:bg-white hover:text-zinc-900">
                 Add column
             </button>
             <button type="button"
-                    onClick={openDeleteBoard}
+                    onClick={() => setOpen('boardTags')}
+                    className="px-4 py-2 text-lg font-medium text-white bg-zinc-900 transition-colors ease-in-out duration-300 border-2 border-zinc-900 hover:bg-white hover:text-zinc-900">
+                Board tags
+            </button>
+            <button type="button"
+                    onClick={() => setOpen('delete')}
                     className="px-4 py-2 text-lg font-medium text-white bg-zinc-900 transition-colors ease-in-out duration-300 border-2 border-zinc-900 rounded-r-2xl hover:bg-white hover:text-zinc-900">
                 Delete board
             </button>
 
-            {/*<button type="button"*/}
-            {/*        className="px-4 py-2 text-lg font-medium text-white bg-zinc-900 transition-colors ease-in-out duration-300 border-t-2 border-b-2 border-gray-900 hover:bg-white hover:text-zinc-900">*/}
-            {/*    Delete board*/}
-            {/*</button>*/}
-            {/*<button type="button"*/}
-            {/*        className="px-4 py-2 text-lg font-medium text-white bg-zinc-900 transition-colors ease-in-out duration-300 border-2 rounded-r-2xl border-gray-900 hover:bg-white hover:text-zinc-900">*/}
-            {/*    Rename board*/}
-            {/*</button>*/}
         </div>
     );
 };

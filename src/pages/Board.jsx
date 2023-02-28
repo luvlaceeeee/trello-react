@@ -15,6 +15,7 @@ import AddColumnModal from "../components/Modal/BoardModals/AddColumnModal";
 import AddUserModal from "../components/Modal/BoardModals/AddUserModal";
 import {useQuery} from "@tanstack/react-query";
 import {getBoardById} from "../API/Service";
+import BoardTagsModal from "../components/Modal/BoardModals/BoardTagsModal";
 
 const Board = () => {
     const userId = useUser(state => state.userId)
@@ -46,8 +47,8 @@ const Board = () => {
     const modalContent = content === 'delete' ? <DeleteBoardModal onClick={setOpen} title={data.title}/> :
         content === 'rename' ? <RenameBoardModal onClick={setOpen} refetch={refetch} title={data.title}/> :
             content === 'addColumn' ? <AddColumnModal onClick={setOpen} refetch={refetch}/> :
-                content === 'addUser' ? <AddUserModal/> : null
-
+                content === 'addUser' ? <AddUserModal/> :
+                    content === 'boardTags' ? <BoardTagsModal onClick={setOpen} refetch={refetch}/> : null
 
     return (
         <div>
