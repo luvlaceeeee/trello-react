@@ -112,7 +112,7 @@ export const deleteTask = async (userId, boardId, columnId, taskId) => {
     return data
 }
 
-export const deleteBoardTag = async (userId, boardId, columnId, tagId) => {
+export const deleteBoardTag = async (userId, boardId, tagId) => {
     const { data } = await axios.delete(`/tags/${tagId}`,{
         params: {
             userId: userId,
