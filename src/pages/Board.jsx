@@ -48,7 +48,7 @@ const Board = () => {
         content === 'rename' ? <RenameBoardModal onClick={setOpen} refetch={refetch} title={data.title}/> :
             content === 'addColumn' ? <AddColumnModal onClick={setOpen} refetch={refetch}/> :
                 content === 'addUser' ? <AddUserModal/> :
-                    content === 'boardTags' ? <BoardTagsModal onClick={setOpen} refetch={refetch}/> : null
+                    content === 'boardTags' ? <BoardTagsModal refetch={refetch}/> : null
 
     return (
         <div>
