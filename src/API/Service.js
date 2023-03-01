@@ -135,6 +135,18 @@ export const createBoardTag = async (userId, boardId, title, color) => {
     return data
 }
 
+export const updateBoardTag = async (userId, boardId, tagId, title, color) => {
+    const { data } = await axios.put(`/tags/${tagId}`, {
+        title: title,
+        color: color
+    },{
+        params: {
+            userId: userId,
+            boardId: boardId,
+        }
+    })
+    return data
+}
 
 
 

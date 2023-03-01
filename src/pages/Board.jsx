@@ -26,11 +26,9 @@ const Board = () => {
     const setOpen = useBoardModal(state => state.setOpen)
 
     const setBoard = useBoard(state => state.setBoard)
-    const setTagColor = useBoard(state => state.setTagColor)
 
     const {
         isLoading,
-        error,
         data,
         refetch
     } = useQuery(["all-boards", userId, boardId], () => getBoardById(userId, boardId), {

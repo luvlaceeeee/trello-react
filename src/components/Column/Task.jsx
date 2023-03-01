@@ -8,6 +8,7 @@ import DeleteColumnModal from "../Modal/BoardModals/DeleteColumnModal";
 import CreateTaskModal from "../Modal/BoardModals/CreateTaskModal";
 import Modal from "../Modal/Modal";
 import DeleteTaskModal from "../Modal/BoardModals/DeleteTaskModal";
+import UpdateTaskModal from "../Modal/BoardModals/UpdateTaskModal";
 
 const Task = ({tags, title, makers, desc, id, refetch, columnId}) => {
 
@@ -30,8 +31,8 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId}) => {
     }
 
     const modalContent = content === 'delete-task' ?
-        <DeleteTaskModal refetch={refetch} columnId={columnId} onClick={setModalOpen} taskId={id}
-                           title={title}/> : null
+        <DeleteTaskModal refetch={refetch} columnId={columnId} onClick={setModalOpen} taskId={id} title={title}/> ?
+            content === 'update-task' : <UpdateTaskModal/> : null
 
     return (
         <div className='bg-white flex flex-col justify-between items-start w-full rounded-lg p-4 pb-3 shadow'>
@@ -42,10 +43,11 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId}) => {
 
             <div className='flex flex-row items-center w-full pb-2'>
                 <div className="flex flex-1 h-auto flex-wrap">
-                    {tags.map(tag => <Tag title={tag.title} color={tag.color} className={'mx-1 my-1'}/> )}
+                    {tags.map(tag => <Tag title={tag.title} color={tag.color} className={'mx-1 my-1'}/>)}
                 </div>
                 <div>
-                    <button ref={button} type="button" className="text-gray-600 hover:bg-gray-400 hover:text-white hover:bg-opacity-70 font-medium rounded-full p-2.5 mb-1 transition-colors ease-in-out duration-300">
+                    <button ref={button} type="button"
+                            className="text-gray-600 hover:bg-gray-400 hover:text-white hover:bg-opacity-70 font-medium rounded-full p-2.5 mb-1 transition-colors ease-in-out duration-300">
                         <FiMoreVertical size={15}/>
                     </button>
 
