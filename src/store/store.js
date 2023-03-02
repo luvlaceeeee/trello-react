@@ -20,4 +20,7 @@ export const useBoard = create((set, get) => ({
     setBoard: (board) => {
         set({...board})
     },
+    // getTask: (id) => {
+    //     return get().columns
+    // }
 }))

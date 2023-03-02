@@ -17,7 +17,6 @@ const Tag = ({title, color, className, tagId, refetch, deleted}) => {
             refetch()
         }
     })
-
     const handleClick = () => {
         mutation.mutate()
     }

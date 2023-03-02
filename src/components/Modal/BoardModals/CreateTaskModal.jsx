@@ -4,14 +4,12 @@ import {useUser} from "../../../store/store";
 import {useParams} from "react-router-dom";
 import {useMutation} from "@tanstack/react-query";
 import {createColumn, createTask, renameColumn} from "../../../API/Service";
-import {FiPlus} from "react-icons/fi";
+import {FiPlus, FiX} from "react-icons/fi";
 import Tag from "../../UI/Tag/Tag";
 import {colors} from "../../../enum/colors";
 import TagsTaskDropdown from "../../TagsTaskDropdown";
-import {tagColorToQuery} from "../../../utils/tagColor";
 
 const CreateTaskModal = ({columnId, onClick, refetch}) => {
-    const [content, setContent] = useState({text: '', description: ''})
     const userId = useUser(state => state.userId)
     const {boardId} = useParams()
 
@@ -25,11 +23,17 @@ const CreateTaskModal = ({columnId, onClick, refetch}) => {
         }
     }));
 
+    const [content, setContent] = useState({text: '', description: ''})
     const [taskTags, setTaskTags] = useState([])
-    const [taskMembers, setTaskMembers] = useState([])
+    // const [taskMembers, setTaskMembers] = useState([])
 
     const addTag = (tag) => {
         setTaskTags([...taskTags, tag])
+    }
+    const deleteTag = value => {
+        setTaskTags(oldValues => {
+            return oldValues.filter(tag => tag.title !== value)
+        })
     }
 
     const mutation = useMutation(["create-task", userId, boardId, columnId, content.text, content.description, taskTags],
@@ -75,7 +79,12 @@ const CreateTaskModal = ({columnId, onClick, refetch}) => {
                         <label className="block mb-2 text-sm font-medium text-gray-900">
                             Tags </label>
                         <div className='flex flex-wrap content-start items-center h-auto'>
-                            {taskTags.map((tag, i) => <Tag key={i} title={tag.title} color={tag.color} className={'mx-1 my-1'}/>)}
+                            {taskTags.map((tag, i) => {
+                                return <div className='flex mx-1 my-1'>
+                                    <Tag key={i} title={tag.title} color={tag.color} className={''}/>
+                                    <button onClick={() => deleteTag(tag.title)} className='text-zinc-400 ml-1'><FiX size={15}/></button>
+                                </div>
+                            })}
                             <button ref={button} type="button"
                                     className="text-zinc-400 border border-zinc-400 hover:bg-zinc-400 hover:text-white font-medium rounded-full text-sm p-1.5 text-center inline-flex items-center mr-2">
                                 <FiPlus size={12}/>

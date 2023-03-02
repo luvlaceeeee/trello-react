@@ -1,11 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import Tag from "../UI/Tag/Tag";
-import {colors} from "../../enum/colors";
 import {FiMoreVertical} from "react-icons/fi";
 import TaskDropDown from "../TaskDropDown";
-import RenameColumnModal from "../Modal/BoardModals/RenameColumnModal";
-import DeleteColumnModal from "../Modal/BoardModals/DeleteColumnModal";
-import CreateTaskModal from "../Modal/BoardModals/CreateTaskModal";
 import Modal from "../Modal/Modal";
 import DeleteTaskModal from "../Modal/BoardModals/DeleteTaskModal";
 import UpdateTaskModal from "../Modal/BoardModals/UpdateTaskModal";
@@ -31,8 +27,10 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId}) => {
     }
 
     const modalContent = content === 'delete-task' ?
-        <DeleteTaskModal refetch={refetch} columnId={columnId} onClick={setModalOpen} taskId={id} title={title}/> ?
-            content === 'update-task' : <UpdateTaskModal/> : null
+        <DeleteTaskModal refetch={refetch} columnId={columnId} onClick={setModalOpen} taskId={id} title={title}/> :
+            content === 'update-task' ?
+            <UpdateTaskModal refetch={refetch} columnId={columnId} onClick={setModalOpen} taskId={id}
+                             title={title} desc={desc} tags={tags}/> : null
 
     return (
         <div className='bg-white flex flex-col justify-between items-start w-full rounded-lg p-4 pb-3 shadow'>

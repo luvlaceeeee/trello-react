@@ -16,7 +16,7 @@ const BoardTagsModal = ({refetch}) => {
     const [isOpenUpdate, setOpenUpdate] = useState(false)
 
     const [tagCreate, setTagCreate] = useState({title: '', color: 0})
-    const [tagUpdate, setTagUpdate] = useState({title: '', color: 0})
+    const [tagUpdate, setTagUpdate] = useState({tagId: 0, title: '', color: 0})
 
     const mutationCreate = useMutation(["create-board-tag", userId, boardId, tagCreate.title, tagCreate.color], () => createBoardTag(userId, boardId, tagCreate.title, tagCreate.color), {
         onSuccess: () => {
@@ -25,20 +25,14 @@ const BoardTagsModal = ({refetch}) => {
             refetch()
         }
     })
-    const handleClickCreate = () => {
-        mutationCreate.mutate()
-    };
 
-    const mutationUpdate = useMutation(["update-board-tag", userId, boardId, tagCreate.title, tagCreate.color], () => updateBoardTag(userId, boardId, tagCreate.title, tagCreate.color), {
+    const mutationUpdate = useMutation(["update-board-tag", userId, boardId, tagUpdate.tagId, tagUpdate.title, tagUpdate.color], () => updateBoardTag(userId, boardId, tagUpdate.tagId, tagUpdate.title, tagUpdate.color), {
         onSuccess: () => {
-            setOpenCreate(false)
-            setTagCreate({title: '', color: 0})
+            setOpenUpdate(false)
+            setTagUpdate({tagId: 0, title: '', color: 0})
             refetch()
         }
     })
-    const handleClickUpdate = (tagId) => {
-        mutationUpdate.mutate(tagId)
-    };
 
     return (
         <div className="relative mx-auto my-20 bg-white rounded-2xl shadow-2xl w-96">
@@ -49,8 +43,12 @@ const BoardTagsModal = ({refetch}) => {
                         <label className="block mb-2 text-sm font-medium text-gray-900">
                             All tags </label>
                         <div className='flex flex-wrap'>
-                            {allTags.map(tag => {
-                                return <button onClick={() => setOpenUpdate(true)}>
+                            {allTags.length === 0 ? <span className='font-light text-sm text-zinc-400'>No tags</span> : allTags.map(tag => {
+                                return <button onClick={() => {
+                                    setOpenCreate(false)
+                                    setOpenUpdate(true)
+                                    setTagUpdate({tagId: tag.id, title: tag.title, color: tag.color})
+                                }}>
                                 <Tag color={tag.color} title={tag.title} className={'mx-1 my-1'} tagId={tag.id} deleted={true} refetch={refetch}/>
                             </button>
                             })}
@@ -84,36 +82,39 @@ const BoardTagsModal = ({refetch}) => {
                             </select>
                         </div>
 
-                        <button onClick={handleClickCreate} className="w-full text-white bg-zinc-700 hover:bg-zinc-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        <button onClick={() => mutationCreate.mutate()} className="w-full text-white bg-zinc-700 hover:bg-zinc-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             {!mutationCreate.isLoading ? 'Create tag' : <ButtonLoader/>}
                         </button>
                     </div>
 
                     <div className={`${isOpenCreate ? 'hidden' : ''}`}>
-                        <button onClick={() => setOpenCreate(!isOpenCreate)} className="w-full text-white bg-zinc-700 hover:bg-zinc-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        <button onClick={() => {
+                            setOpenCreate(true)
+                            setOpenUpdate(false)
+                        }} className="w-full text-white bg-zinc-700 hover:bg-zinc-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             Create new tag?
                         </button>
                     </div>
 
                     <div className={`space-y-6 ${isOpenUpdate ? '' : 'hidden'}`}>
-                        <div className={`flex ${tagCreate.title ? 'justify-between' : 'justify-end'} w-full`}>
-                            <div className={`${tagCreate.title ? '' : 'hidden'}`}>
-                                <Tag title={tagCreate.title} color={tagCreate.color}/>
+                        <div className={`flex ${tagUpdate.title ? 'justify-between' : 'justify-end'} w-full`}>
+                            <div className={`${tagUpdate.title ? '' : 'hidden'}`}>
+                                <Tag title={tagUpdate.title} color={tagUpdate.color}/>
                             </div>
                             <button onClick={() => {setOpenUpdate(false)}} className='text-zinc-500 mb-2 bg-zinc-100 rounded-full p-1'><FiX size={18}/></button>
                         </div>
                         <div>
                             <label className="block mb-2 text-sm font-medium text-gray-900"> Tag name </label>
                             <input type="text"
-                                   value={tagCreate.title}
-                                   onChange={e => setTagUpdate({...tagCreate, title: e.target.value})}
+                                   value={tagUpdate.title}
+                                   onChange={e => setTagUpdate({...tagUpdate, title: e.target.value})}
                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                    placeholder="Name your tag" required/>
                         </div>
 
                         <div>
                             <label className="block mb-2 text-sm font-medium text-gray-900"> Tag color </label>
-                            <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" value={tagCreate.color} onChange={(e) => {setTagCreate({...tagCreate, color: Number(e.target.value)})}}>
+                            <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" value={tagUpdate.color.toString()} onChange={(e) => {setTagUpdate({...tagUpdate, color: Number(e.target.value)})}}>
                                 <option selected value="0" className='text-blue-600 font-medium'>Blue</option>
                                 <option value="1" className='text-orange-600 font-medium'>Orange</option>
                                 <option value="2" className='text-red-600 font-medium'>Red</option>
@@ -122,8 +123,8 @@ const BoardTagsModal = ({refetch}) => {
                             </select>
                         </div>
 
-                        <button onClick={handleClickUpdate} className="w-full text-white bg-zinc-700 hover:bg-zinc-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                            {!mutationCreate.isLoading ? 'Update tag' : <ButtonLoader/>}
+                        <button onClick={() => mutationUpdate.mutate()} className="w-full text-white bg-zinc-700 hover:bg-zinc-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                            {!mutationUpdate.isLoading ? 'Update tag' : <ButtonLoader/>}
                         </button>
                     </div>
 

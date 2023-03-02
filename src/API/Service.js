@@ -90,7 +90,8 @@ export const createTask = async (userId, boardId, columnId, text, desc, tags) =>
     const { data } = await axios.post(`/tasks`,{
         text: text,
         description: desc,
-        tags: tags
+        tags: tags,
+        // makers: makers
     },{
         params: {
             userId: userId,
@@ -103,6 +104,20 @@ export const createTask = async (userId, boardId, columnId, text, desc, tags) =>
 
 export const deleteTask = async (userId, boardId, columnId, taskId) => {
     const { data } = await axios.delete(`/tasks/${taskId}`,{
+        params: {
+            userId: userId,
+            boardId: boardId,
+            columnId: columnId
+        }
+    })
+    return data
+}
+
+export const updateTaskText = async (userId, boardId, columnId, taskId, text, desc) => {
+    const { data } = await axios.put(`/tasks/${taskId}`,{
+        text: text,
+        description: desc,
+    },{
         params: {
             userId: userId,
             boardId: boardId,
@@ -148,5 +163,27 @@ export const updateBoardTag = async (userId, boardId, tagId, title, color) => {
     return data
 }
 
+export const deleteTaskTag = async (userId, boardId, taskId, tagId) => {
+    const { data } = await axios.delete(`/tags/${tagId}/unpin`,{
+        params: {
+            userId: userId,
+            boardId: boardId,
+            taskId: taskId
+        }
+    })
+    return data
+}
 
+export const addTaskTag = async (userId, boardId, taskId, tagId) => {
+    const { data } = await axios.put(`/tags/${tagId}/pin`, {
+
+    },{
+        params: {
+            userId: userId,
+            boardId: boardId,
+            taskId: taskId
+        }
+    })
+    return data
+}
 
