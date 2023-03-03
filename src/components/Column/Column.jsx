@@ -20,8 +20,9 @@ import {getBoardById, getTasksByColumnId} from "../../API/Service";
 import LoadingScreen from "../UI/LoadingScreen";
 import {useUser} from "../../store/store";
 import {useParams} from "react-router-dom";
+import ButtonLoader from "../UI/ButtonLoader";
 
-const Column = ({title, tasks, id, refetch}) => {
+const Column = ({title, tasks, id,}) => {
     // const isOpen = useColumnModal(state => state.isOpen)
     // const content = useColumnModal(state => state.content)
     // const setOpen = useColumnModal(state => state.setOpen)
@@ -39,7 +40,7 @@ const Column = ({title, tasks, id, refetch}) => {
     const {
         isLoading,
         data,
-        // refetch
+        refetch
     } = useQuery(["all-tasks", userId, boardId, id], () => getTasksByColumnId(userId, boardId, id), {
         refetchOnWindowFocus: false,
         onSuccess: data => {
@@ -47,8 +48,9 @@ const Column = ({title, tasks, id, refetch}) => {
     });
 
     if (isLoading) return (
-        'asdasd'
-        // <LoadingScreen isLoading={true}/>
+        <div className='bg-zinc-200 flex flex-col justify-between items-center w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'>
+            <ButtonLoader/>
+        </div>
     )
 
 
@@ -64,8 +66,7 @@ const Column = ({title, tasks, id, refetch}) => {
                 {modalContent}
             </Modal>
 
-            <div
-                className='bg-zinc-200 flex flex-col justify-between items-center w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'>
+            <div className='bg-zinc-200 flex flex-col justify-between items-center w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'>
                 <ColumnHeader badgeTitle={title} color={colors.black.badge} taskNumber={data.length} id={id}
                               setOpen={setModal}/>
                 {data.map(task => <Task key={task.id} tags={task.tags} title={task.text} desc={task.description} makers={task.makers} id={task.id} columnId={id} refetch={refetch}/>)}
