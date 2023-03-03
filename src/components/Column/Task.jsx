@@ -28,7 +28,7 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId}) => {
 
     const modalContent = content === 'delete-task' ?
         <DeleteTaskModal refetch={refetch} columnId={columnId} onClick={setModalOpen} taskId={id} title={title}/> :
-            content === 'update-task' ?
+        content === 'update-task' ?
             <UpdateTaskModal refetch={refetch} columnId={columnId} onClick={setModalOpen} taskId={id}
                              title={title} desc={desc} tags={tags}/> : null
 
@@ -38,24 +38,34 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId}) => {
             <Modal isOpen={isModalOpen} setOpen={setModal}>
                 {modalContent}
             </Modal>
+            {tags.length !== 0 ? <>
+                <div className='flex flex-row items-center w-full pb-2'>
+                    <div className="flex flex-1 h-auto flex-wrap">
+                        {tags.map(tag => <Tag title={tag.title} color={tag.color} className={'mx-1 my-1'}/>)}
+                    </div>
+                    <div>
+                        <button ref={button} type="button"
+                                className="text-gray-600 hover:bg-gray-400 hover:text-white hover:bg-opacity-70 font-medium rounded-full p-2.5 mb-1 transition-colors ease-in-out duration-300">
+                            <FiMoreVertical size={15}/>
+                        </button>
 
-            <div className='flex flex-row items-center w-full pb-2'>
-                <div className="flex flex-1 h-auto flex-wrap">
-                    {tags.map(tag => <Tag title={tag.title} color={tag.color} className={'mx-1 my-1'}/>)}
+                        <TaskDropDown state={isOpen} setOpen={setModal}/>
+                    </div>
                 </div>
-                <div>
-                    <button ref={button} type="button"
-                            className="text-gray-600 hover:bg-gray-400 hover:text-white hover:bg-opacity-70 font-medium rounded-full p-2.5 mb-1 transition-colors ease-in-out duration-300">
-                        <FiMoreVertical size={15}/>
-                    </button>
-
-                    <TaskDropDown state={isOpen} setOpen={setModal}/>
+                <div className='h-auto'>
+                    <h1 className='break-all font-bold text-lg pb-1'>{title}</h1>
                 </div>
-            </div>
+            </> : <div className='flex items-center'>
+                <div className='h-auto'>
+                    <h1 className='break-all font-bold text-lg pb-1'>{title}</h1>
+                </div>
+                <button ref={button} type="button"
+                        className="text-gray-600 hover:bg-gray-400 hover:text-white hover:bg-opacity-70 font-medium rounded-full p-2.5 mb-1 transition-colors ease-in-out duration-300">
+                    <FiMoreVertical size={15}/>
+                </button>
 
-            <div className='h-auto'>
-                <h1 className='font-bold text-xl pb-1'>{title}</h1>
-            </div>
+                <TaskDropDown state={isOpen} setOpen={setModal}/>
+            </div>}
 
             <div className='pb-3 h-auto'>
                 <span className='text-gray-400 text-sm h-auto'>{desc}</span>

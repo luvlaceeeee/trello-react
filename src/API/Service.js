@@ -86,6 +86,17 @@ export const deleteColumn = async (userId, boardId, columnId) => {
     return data
 }
 
+export const getTasksByColumnId = async (userId, boardId, columnId) => {
+    const {data} = await axios.get(`/tasks`, {
+        params: {
+            userId: userId,
+            boardId: boardId,
+            columnId: columnId
+        }
+    })
+    return data
+}
+
 export const createTask = async (userId, boardId, columnId, text, desc, tags) => {
     const { data } = await axios.post(`/tasks`,{
         text: text,
@@ -186,4 +197,6 @@ export const addTaskTag = async (userId, boardId, taskId, tagId) => {
     })
     return data
 }
+
+
 
