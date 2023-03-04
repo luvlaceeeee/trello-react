@@ -34,7 +34,7 @@ const RenameBoardModal = ({refetch, onClick, title}) => {
                                value={name.title}
                                onChange={e => setName({...name, title: e.target.value})}
                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                               placeholder="Name your board" required/>
+                               placeholder="Name your board" required autoFocus={true}/>
                     </div>
 
                     <button onClick={handleClick} className="w-full text-white bg-zinc-700 hover:bg-zinc-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">

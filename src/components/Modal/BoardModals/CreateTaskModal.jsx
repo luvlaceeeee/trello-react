@@ -62,7 +62,7 @@ const CreateTaskModal = ({columnId, onClick, refetch}) => {
                                value={content.text}
                                onChange={e => setContent({...content, text: e.target.value})}
                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                               placeholder="Name your task" required/>
+                               placeholder="Name your task" required autoFocus={true}/>
                     </div>
 
                     <div>
