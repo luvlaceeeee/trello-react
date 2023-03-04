@@ -16,6 +16,7 @@ import AddUserModal from "../components/Modal/BoardModals/AddUserModal";
 import {useQuery} from "@tanstack/react-query";
 import {getBoardById} from "../API/Service";
 import BoardTagsModal from "../components/Modal/BoardModals/BoardTagsModal";
+import BoardHeaderLoader from "../components/Board/BoardHeaderLoader";
 
 const Board = () => {
     const userId = useUser(state => state.userId)
@@ -39,7 +40,28 @@ const Board = () => {
     });
 
     if (isLoading) return (
-        <LoadingScreen isLoading={true}/>
+        <div>
+            <ContentLayout>
+                <HeaderLayout>
+                    <BoardHeaderLoader/>
+                </HeaderLayout>
+
+                <ColumnLayout>
+                    <div
+                        className='animate-pulse bg-zinc-200 flex flex-col justify-between items-center flex-none w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'></div>
+                    <div
+                        className='animate-pulse bg-zinc-200 flex flex-col justify-between items-center flex-none w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'></div>
+                    <div
+                        className='animate-pulse bg-zinc-200 flex flex-col justify-between items-center flex-none w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'></div>
+                    <div
+                        className='animate-pulse bg-zinc-200 flex flex-col justify-between items-center flex-none w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'></div>
+                    <div
+                        className='animate-pulse bg-zinc-200 flex flex-col justify-between items-center flex-none w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'></div>
+                    <div
+                        className='animate-pulse bg-zinc-200 flex flex-col justify-between items-center flex-none w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'></div>
+                </ColumnLayout>
+            </ContentLayout>
+        </div>
     )
 
     const modalContent = content === 'delete' ? <DeleteBoardModal onClick={setOpen} title={data.title}/> :
@@ -56,12 +78,13 @@ const Board = () => {
                 </Modal>
 
                 <HeaderLayout>
-                    <BoardHeader title={data.title} columns={data.columns}/>
+                    <BoardHeader title={data.title} columns={data.columns} members={data.users}/>
                 </HeaderLayout>
 
                 <ColumnLayout>
                     {data.columns.map(column => {
-                        return <Column key={column.id} title={column.title} tasks={column.tasks} id={column.id} refetch={refetch}/>
+                        return <Column key={column.id} title={column.title} tasks={column.tasks} id={column.id}
+                                       boardRefetch={refetch}/>
                     })}
                 </ColumnLayout>
             </ContentLayout>

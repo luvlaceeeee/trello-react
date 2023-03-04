@@ -5,7 +5,7 @@ import {FiPlus, FiEdit3, FiTrash2, FiMoreHorizontal} from "react-icons/fi";
 import ColumnDropdown from "../ColumnDropdown";
 import {useBoardModal, useColumnModal} from "../../store/uiStore";
 
-const ColumnHeader = ({badgeTitle, taskNumber, color, id, setOpen}) => {
+const ColumnHeader = ({badgeTitle, taskNumber, color, setOpen}) => {
     const [badgeColor, taskColor] = color
 
     const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +20,7 @@ const ColumnHeader = ({badgeTitle, taskNumber, color, id, setOpen}) => {
 
 
     return (
-        <div className='flex flex-row justify-between items-center w-full p-3 bg-white rounded-full shadow'>
+        <div className='flex flex-row justify-between items-center w-full p-3 bg-white rounded-full shadow space-x-1'>
             <Badge title={badgeTitle} bgColor={badgeColor} borderColor={taskColor} number={taskNumber}/>
             <div>
                 <button ref={button} type="button"

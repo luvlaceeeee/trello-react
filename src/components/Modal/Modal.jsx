@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
-import {useAddModal, useSpace} from "../../store/uiStore";
-import { FiX } from "react-icons/fi";
+import React from 'react';
+import {FiX} from "react-icons/fi";
 
 const Modal = ({children, isOpen, setOpen}) => {
 
@@ -9,9 +8,11 @@ const Modal = ({children, isOpen, setOpen}) => {
 
 
     return (
-        <div tabIndex="-1" aria-hidden="true" className={`${isOpen ? '' : 'hidden'} fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full`}>
+        <div
+            className={`${isOpen ? 'opacity-100' : 'opacity-0 hidden'} fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full backdrop-blur-sm`}>
 
-            <div className="absolute w-full h-full top-0 right-0 left-0 bottom-0 bg-black bg-opacity-70" onClick={setOpen}>
+            <div className="absolute w-full h-full top-0 right-0 left-0 bottom-0 bg-black bg-opacity-60"
+                 onClick={setOpen}>
 
             </div>
             <button type="button"
@@ -19,7 +20,7 @@ const Modal = ({children, isOpen, setOpen}) => {
                     onClick={setOpen}>
                 <FiX size={35}/>
             </button>
-                {children}
+            {children}
         </div>
     );
 };

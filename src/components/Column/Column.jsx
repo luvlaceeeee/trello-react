@@ -22,7 +22,7 @@ import {useUser} from "../../store/store";
 import {useParams} from "react-router-dom";
 import ButtonLoader from "../UI/ButtonLoader";
 
-const Column = ({title, tasks, id,}) => {
+const Column = ({title, tasks, id, boardRefetch}) => {
     // const isOpen = useColumnModal(state => state.isOpen)
     // const content = useColumnModal(state => state.content)
     // const setOpen = useColumnModal(state => state.setOpen)
@@ -31,7 +31,6 @@ const Column = ({title, tasks, id,}) => {
 
     const [isOpen, setOpen] = useState(false)
     const [content, setContent] = useState('')
-
     const setModal = (content) => {
         setOpen(!isOpen)
         setContent(content)
@@ -43,33 +42,31 @@ const Column = ({title, tasks, id,}) => {
         refetch
     } = useQuery(["all-tasks", userId, boardId, id], () => getTasksByColumnId(userId, boardId, id), {
         refetchOnWindowFocus: false,
-        onSuccess: data => {
-        }
     });
 
     if (isLoading) return (
-        <div className='bg-zinc-200 flex flex-col justify-between items-center w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'>
-            <ButtonLoader/>
-        </div>
+        <div className='animate-pulse bg-zinc-200 flex flex-col justify-between items-center flex-none w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'></div>
     )
 
 
     const modalContent = content === 'rename-column' ?
-        <RenameColumnModal refetch={refetch} onClick={setOpen} columnId={id}
+        <RenameColumnModal refetch={boardRefetch} onClick={setOpen} columnId={id}
                            title={title}/> : content === 'delete-column' ?
-            <DeleteColumnModal refetch={refetch} onClick={setOpen} columnId={id}
+            <DeleteColumnModal refetch={boardRefetch} onClick={setOpen} columnId={id}
                                title={title}/> : content === 'create-task' ?
-                <CreateTaskModal refetch={refetch} onClick={setOpen} columnId={id}/> : null
+                <CreateTaskModal refetch={boardRefetch} onClick={setOpen} columnId={id}/> : null
     return (
         <div>
             <Modal isOpen={isOpen} setOpen={setModal}>
                 {modalContent}
             </Modal>
 
-            <div className='bg-zinc-200 flex flex-col justify-between items-center w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'>
-                <ColumnHeader badgeTitle={title} color={colors.black.badge} taskNumber={data.length} id={id}
+            <div
+                className='bg-zinc-200 flex flex-col justify-between items-center w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'>
+                <ColumnHeader badgeTitle={title} color={colors.black.badge} taskNumber={data.length}
                               setOpen={setModal}/>
-                {data.map(task => <Task key={task.id} tags={task.tags} title={task.text} desc={task.description} makers={task.makers} id={task.id} columnId={id} refetch={refetch}/>)}
+                {data.map(task => <Task key={task.id} tags={task.tags} title={task.text} desc={task.description}
+                                        makers={task.makers} id={task.id} columnId={id} refetch={refetch}/>)}
             </div>
         </div>
     );

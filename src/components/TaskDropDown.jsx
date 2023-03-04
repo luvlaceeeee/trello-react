@@ -12,15 +12,15 @@ const TaskDropDown = ({state, setOpen}) => {
                 {/*    </div>*/}
                 {/*</li>*/}
                 <li>
-                    <div className='flex items-center block px-4 py-2 hover:bg-gray-100'>
+                    <div onClick={() => setOpen('update-task')} className='flex items-center block px-4 py-2 hover:bg-gray-100'>
                         <FiEdit3/>
-                        <button onClick={() => setOpen('update-task')} className="px-2 hover:bg-gray-100">Update task</button>
+                        <button className="px-2 hover:bg-gray-100">Update task</button>
                     </div>
                 </li>
                 <li>
-                    <div className='flex items-center block px-4 py-2 hover:bg-gray-100'>
+                    <div onClick={() => setOpen('delete-task')} className='flex items-center block px-4 py-2 hover:bg-gray-100'>
                         <FiTrash2/>
-                        <button onClick={() => setOpen('delete-task')} className="px-2 hover:bg-gray-100">Delete task</button>
+                        <button className="px-2 hover:bg-gray-100">Delete task</button>
                     </div>
                 </li>
             </ul>

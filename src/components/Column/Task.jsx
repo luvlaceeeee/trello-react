@@ -32,6 +32,8 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId}) => {
             <UpdateTaskModal refetch={refetch} columnId={columnId} onClick={setModalOpen} taskId={id}
                              title={title} desc={desc} tags={tags}/> : null
 
+    const firstLetter = title.split(' ')[0]
+
     return (
         <div className='bg-white flex flex-col justify-between items-start w-full rounded-lg p-4 pb-3 shadow'>
 
@@ -53,18 +55,20 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId}) => {
                     </div>
                 </div>
                 <div className='h-auto'>
-                    <h1 className='break-all font-bold text-lg pb-1'>{title}</h1>
+                    <h1 className={`${firstLetter.length > 16 ? 'break-all' : 'break-words'} font-bold text-base pb-1`}>{title}</h1>
                 </div>
-            </> : <div className='flex items-center'>
+            </> : <div className='flex space-x-1 justify-between w-full'>
                 <div className='h-auto'>
-                    <h1 className='break-all font-bold text-lg pb-1'>{title}</h1>
+                    <h1 className={`${firstLetter.length > 16 ? 'break-all' : 'break-words'} font-bold text-base pb-1`}>{title}</h1>
                 </div>
-                <button ref={button} type="button"
-                        className="text-gray-600 hover:bg-gray-400 hover:text-white hover:bg-opacity-70 font-medium rounded-full p-2.5 mb-1 transition-colors ease-in-out duration-300">
-                    <FiMoreVertical size={15}/>
-                </button>
+                <div>
+                    <button ref={button} type="button"
+                            className="text-gray-600 hover:bg-gray-400 hover:text-white hover:bg-opacity-70 font-medium rounded-full p-2.5 mb-1 transition-colors ease-in-out duration-300">
+                        <FiMoreVertical size={15}/>
+                    </button>
 
-                <TaskDropDown state={isOpen} setOpen={setModal}/>
+                    <TaskDropDown state={isOpen} setOpen={setModal}/>
+                </div>
             </div>}
 
             <div className='pb-3 h-auto'>

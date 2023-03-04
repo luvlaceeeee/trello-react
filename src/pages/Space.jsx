@@ -26,7 +26,6 @@ const Space = () => {
     if (isLoading) return (
         <LoadingScreen isLoading={true}/>
     )
-    // if (error) return "An error has occurred: " + error.message;
 
     return (
         <div>
@@ -40,7 +39,7 @@ const Space = () => {
                     <SpaceHeader boards={data}/>
                 </HeaderLayout>
 
-                {/*<div className='flex flex-col'>*/}
+                <div className='flex flex-col'>
                     <div className='p-5 pb-1'>
                         <span className='block pb-1 font-bold text-lg'>All boards:</span>
                         <hr/>
@@ -58,13 +57,13 @@ const Space = () => {
                     {/*    <hr/>*/}
                     {/*</div>*/}
                     {/*<ColumnLayout>*/}
-                    {/*    {boards.map(board => {*/}
+                    {/*    {data.map(board => {*/}
                     {/*        if (board.role === 'creator') return <BoardColumn title={board.title}/>*/}
                     {/*    })}*/}
                     {/*    <AddBoardColumn title={'Add new board'}/>*/}
                     {/*</ColumnLayout>*/}
 
-                {/*</div>*/}
+                </div>
             </ContentLayout>
         </div>
     );

@@ -1,8 +1,8 @@
 import React from 'react';
 import {useUser} from "../../../store/store";
-import {redirect, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useMutation} from "@tanstack/react-query";
-import {createBoard, deleteBoardById} from "../../../API/Service";
+import {deleteBoardById} from "../../../API/Service";
 import ButtonLoader from "../../UI/ButtonLoader";
 
 const DeleteBoardModal = ({title, onClick}) => {
@@ -17,10 +17,6 @@ const DeleteBoardModal = ({title, onClick}) => {
         }
     })
 
-    const handleClick = () => {
-        mutation.mutate()
-    };
-
 
     return (
         <div className="relative mx-auto my-20 bg-white rounded-2xl shadow-2xl w-96">
@@ -32,13 +28,18 @@ const DeleteBoardModal = ({title, onClick}) => {
                             You want to delete {title} board?
                         </label>
                     </div>
-                    <div className='flex justify-around items-center space-x-2.5'>
-                        <button onClick={handleClick} className="w-full text-white bg-green-300 hover:bg-green-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                            {!mutation.isLoading ? 'Yes' : <ButtonLoader/>}
-                        </button>
-                        <button onClick={onClick} className=" w-full text-white bg-red-300 hover:bg-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                            No
-                        </button>
+                    <div className='flex justify-between'>
+                        <span className='block text-sm font-light text-red-400 w-32 break-words'>Note! All data will be cleared without the possibility of recovery</span>
+                        <div className='flex justify-end items-center space-x-2.5'>
+                            <button onClick={() => mutation.mutate()}
+                                    className="text-zinc-900 bg-white border-2 border-zinc-900 hover:border-green-200 hover:bg-green-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-300">
+                                {!mutation.isLoading ? 'Yes' : <ButtonLoader/>}
+                            </button>
+                            <button onClick={onClick}
+                                    className="text-white border-2 border-zinc-900 hover:border-red-700 bg-zinc-900 hover:bg-red-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-300">
+                                No
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

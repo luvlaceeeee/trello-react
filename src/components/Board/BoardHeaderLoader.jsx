@@ -1,22 +1,21 @@
 import React from 'react';
 import ButtonsGroupHeaderBoard from "./ButtonsGroupHeaderBoard";
 
-const BoardHeader = ({title, members, columns}) => {
-
-    const capitalized =
-        title.charAt(0).toUpperCase()
-        + title.slice(1)
-
+const BoardHeaderLoader = () => {
     return (
         <div className='p-2 flex flex-row justify-between items-center'>
             <div className='space-y-1 inline-flex items-center space-x-10'>
                 <div>
-                    <div className='inline-flex mb-1'>
-                        <h1 className='font-bold text-2xl'>{capitalized}</h1>
+                    <div className='inline-flex mb-2'>
+                        <div className="max-w-sm animate-pulse">
+                            <div className="h-8 bg-gray-200 rounded-full w-36"></div>
+                        </div>
                     </div>
 
                     <div className='text-zinc-400'>
-                        <span>{columns.length} Running Projects</span>
+                        <div className="max-w-sm animate-pulse">
+                            <div className="h-5 bg-gray-200 rounded-full w-36"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -31,22 +30,21 @@ const BoardHeader = ({title, members, columns}) => {
                 {/*</div>*/}
 
                 <div className='flex flex-col justify-between items-start space-y-1'>
-                    <span className='text-gray-700 text-lg'>Members:</span>
-                    <div className='text-s, text-zinc-400'>
-                        {members.map((member, i) => {
-                            if (i !== members.length - 1){
-                                return  member + ', '
-                            } else {
-                                return member + '.'
-                            }
-                        })}
+                    <div className="max-w-sm animate-pulse">
+                        <div className="h-6 bg-gray-200 rounded-full w-24"></div>
+                    </div>
+                    <div className="max-w-sm animate-pulse">
+                        <div className="h-3 bg-gray-200 rounded-full w-36"></div>
                     </div>
                 </div>
 
             </div>
-            <ButtonsGroupHeaderBoard/>
+            <div className="max-w-sm animate-pulse">
+                <div className="h-12 bg-gray-200 rounded-2xl w-96"></div>
+            </div>
+            {/*<ButtonsGroupHeaderBoard/>*/}
         </div>
     );
 };
 
-export default BoardHeader;
+export default BoardHeaderLoader;
