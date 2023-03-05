@@ -22,9 +22,8 @@ const ColumnHeader = ({badgeTitle, taskNumber, color, setOpen}) => {
     return (
         <div className='flex flex-row justify-between items-center w-full p-3 bg-white rounded-full shadow space-x-1'>
             <Badge title={badgeTitle} bgColor={badgeColor} borderColor={taskColor} number={taskNumber}/>
-            <div>
-                <button ref={button} type="button"
-                        className="text-gray-600 hover:bg-zinc-400 hover:text-white hover:bg-opacity-70 font-medium rounded-full p-2 transition-colors ease-in-out duration-300">
+            <div className='relative'>
+                <button ref={button} type="button" className="text-gray-600 hover:bg-zinc-400 hover:text-white hover:bg-opacity-70 font-medium rounded-full p-2 transition-colors ease-in-out duration-300">
                     <FiMoreHorizontal size={15}/>
                 </button>
                 <ColumnDropdown state={isOpen} setOpen={setOpen}/>

@@ -45,12 +45,11 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId}) => {
                     <div className="flex flex-1 h-auto flex-wrap">
                         {tags.map(tag => <Tag title={tag.title} color={tag.color} className={'mx-1 my-1'}/>)}
                     </div>
-                    <div>
+                    <div className='relative'>
                         <button ref={button} type="button"
                                 className="text-gray-600 hover:bg-gray-400 hover:text-white hover:bg-opacity-70 font-medium rounded-full p-2.5 mb-1 transition-colors ease-in-out duration-300">
                             <FiMoreVertical size={15}/>
                         </button>
-
                         <TaskDropDown state={isOpen} setOpen={setModal}/>
                     </div>
                 </div>
@@ -61,12 +60,11 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId}) => {
                 <div className='h-auto'>
                     <h1 className={`${firstLetter.length > 16 ? 'break-all' : 'break-words'} font-bold text-base pb-1`}>{title}</h1>
                 </div>
-                <div>
+                <div className='relative z-0'>
                     <button ref={button} type="button"
                             className="text-gray-600 hover:bg-gray-400 hover:text-white hover:bg-opacity-70 font-medium rounded-full p-2.5 mb-1 transition-colors ease-in-out duration-300">
                         <FiMoreVertical size={15}/>
                     </button>
-
                     <TaskDropDown state={isOpen} setOpen={setModal}/>
                 </div>
             </div>}

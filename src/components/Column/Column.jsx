@@ -1,26 +1,15 @@
 import React, {useState} from 'react';
-import Badge from "../UI/Badge/Badge";
-import IconButton from "../UI/IconButton/IconButton";
-import {FiMoreVertical, FiPlus} from "react-icons/fi";
-import Tag from "../UI/Tag/Tag";
 import {colors} from "../../enum/colors";
 import ColumnHeader from "./ColumnHeader";
 import Task from "./Task";
 import Modal from "../Modal/Modal";
-import DeleteBoardModal from "../Modal/BoardModals/DeleteBoardModal";
-import RenameBoardModal from "../Modal/BoardModals/RenameBoardModal";
-import AddColumnModal from "../Modal/BoardModals/AddColumnModal";
-import AddUserModal from "../Modal/BoardModals/AddUserModal";
-import {useBoardModal, useColumnModal} from "../../store/uiStore";
 import RenameColumnModal from "../Modal/BoardModals/RenameColumnModal";
 import DeleteColumnModal from "../Modal/BoardModals/DeleteColumnModal";
 import CreateTaskModal from "../Modal/BoardModals/CreateTaskModal";
 import {useQuery} from "@tanstack/react-query";
-import {getBoardById, getTasksByColumnId} from "../../API/Service";
-import LoadingScreen from "../UI/LoadingScreen";
+import {getTasksByColumnId} from "../../API/Service";
 import {useUser} from "../../store/store";
 import {useParams} from "react-router-dom";
-import ButtonLoader from "../UI/ButtonLoader";
 
 const Column = ({title, tasks, id, boardRefetch}) => {
     // const isOpen = useColumnModal(state => state.isOpen)
@@ -54,20 +43,19 @@ const Column = ({title, tasks, id, boardRefetch}) => {
                            title={title}/> : content === 'delete-column' ?
             <DeleteColumnModal refetch={boardRefetch} onClick={setOpen} columnId={id}
                                title={title}/> : content === 'create-task' ?
-                <CreateTaskModal refetch={boardRefetch} onClick={setOpen} columnId={id}/> : null
+                <CreateTaskModal refetch={refetch} onClick={setOpen} columnId={id}/> : null
     return (
-        <div>
-            <Modal isOpen={isOpen} setOpen={setModal}>
-                {modalContent}
-            </Modal>
+        <div className='scrollbar overflow-y-auto flex-none'>
+                <Modal isOpen={isOpen} setOpen={setModal}>
+                    {modalContent}
+                </Modal>
 
-            <div
-                className='bg-zinc-200 flex flex-col justify-between items-center w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'>
-                <ColumnHeader badgeTitle={title} color={colors.black.badge} taskNumber={data.length}
-                              setOpen={setModal}/>
-                {data.map(task => <Task key={task.id} tags={task.tags} title={task.text} desc={task.description}
-                                        makers={task.makers} id={task.id} columnId={id} refetch={refetch}/>)}
-            </div>
+                <div className='bg-slate-200 flex flex-col justify-between items-center w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'>
+                    <ColumnHeader badgeTitle={title} color={colors.black.badge} taskNumber={data.length}
+                                  setOpen={setModal}/>
+                    {data.map(task => <Task key={task.id} tags={task.tags} title={task.text} desc={task.description}
+                                            makers={task.makers} id={task.id} columnId={id} refetch={refetch}/>)}
+                </div>
         </div>
     );
 };

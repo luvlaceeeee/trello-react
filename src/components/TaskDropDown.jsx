@@ -3,7 +3,7 @@ import {FiEdit3, FiPlus, FiTrash2} from "react-icons/fi";
 
 const TaskDropDown = ({state, setOpen}) => {
     return (
-        <div id="dropdownDots" className={`${state ? '' : 'hidden'} z-10 absolute bg-white divide-y divide-zinc-800 rounded-lg shadow w-44 border`}>
+        <div className={`${state ? '' : 'hidden'} z-50 absolute bg-white divide-y divide-zinc-800 rounded-lg shadow w-44 border`}>
             <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownMenuIconButton">
                 {/*<li>*/}
                 {/*    <div className='flex items-center block px-4 py-2 hover:bg-gray-100'>*/}

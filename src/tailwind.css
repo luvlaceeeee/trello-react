@@ -10,7 +10,7 @@ body {
 
 @layer utilities {
     .scrollbar::-webkit-scrollbar {
-        width: 15px;
+        width: 12px;
         height: 15px;
     }
 
@@ -19,7 +19,7 @@ body {
     }
 
     .scrollbar::-webkit-scrollbar-thumb {
-        background: #a9a9a9;
+        background: rgba(154, 159, 166, 0.59);
         border-radius: 100vh;
         border: 3px solid #f6f7ed;
     }
