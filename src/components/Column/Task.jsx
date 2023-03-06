@@ -35,7 +35,7 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId}) => {
     const firstLetter = title.split(' ')[0]
 
     return (
-        <div className='bg-white flex flex-col justify-between items-start w-full rounded-lg p-4 pb-3 shadow'>
+        <div className='bg-white flex flex-col justify-between items-start w-full rounded-lg p-4 pb-3 shadow' draggable={true}>
 
             <Modal isOpen={isModalOpen} setOpen={setModal}>
                 {modalContent}

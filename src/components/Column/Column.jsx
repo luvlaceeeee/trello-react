@@ -45,7 +45,7 @@ const Column = ({title, tasks, id, boardRefetch}) => {
                                title={title}/> : content === 'create-task' ?
                 <CreateTaskModal refetch={refetch} onClick={setOpen} columnId={id}/> : null
     return (
-        <div className='scrollbar overflow-y-auto flex-none'>
+        <div className='scrollbar overflow-y-auto flex-none' draggable={true}>
                 <Modal isOpen={isOpen} setOpen={setModal}>
                     {modalContent}
                 </Modal>
