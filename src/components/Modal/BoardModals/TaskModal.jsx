@@ -10,7 +10,7 @@ const TaskModal = ({title, tags, columnId, taskId, refetch, desc, columnTitle}) 
     const {boardId} = useParams()
 
     return (
-        <div className="relative mx-auto my-20 bg-white rounded-2xl shadow-2xl max-w-2xl">
+        <div className="relative mx-auto my-20 bg-white rounded-2xl shadow-2xl max-w-2xl overflow-y-scroll">
             <div className="px-8 py-8">
                 <div className='mb-10'>
                     <div className='mb-1 flex items-center'>
@@ -23,13 +23,43 @@ const TaskModal = ({title, tags, columnId, taskId, refetch, desc, columnTitle}) 
                         <span className='text-sm text-zinc-400'>In column <span
                             className='underline decoration-2'>{columnTitle}</span></span>
                         </div>
-                        <div className='mb-1'><span className='uppercase text-sm font-bold'>Tags</span></div>
-                        <div className='flex flex-wrap content-start items-center h-auto'>
-                            {tags.map((tag, i) => {
-                                return <div className='flex'>
-                                    <Tag key={i} title={tag.title} color={tag.color} className={'mr-1'}/>
+
+                        <div className='flex justify-between'>
+
+                            <div className='w-1/2'>
+                                <div className='mb-1'><span className='uppercase text-sm font-bold'>Tags</span></div>
+                                <div className='flex flex-wrap content-start items-center h-auto'>
+                                    {tags.map((tag, i) => {
+                                        return <div className='flex'>
+                                            <Tag key={i} title={tag.title} color={tag.color} className={'mr-1 mb-1'}/>
+                                        </div>
+                                    })}
                                 </div>
-                            })}
+                            </div>
+
+                            <div className='w-1/2'>
+                                <div className='mb-1'><span className='uppercase text-sm font-bold'>Members</span></div>
+                                <div className='flex flex-col space-y-2 h-auto'>
+                                    <div className='flex space-x-2 items-center'>
+                                        <img className="w-8 h-8 rounded-full"
+                                             src="https://sun9-56.userapi.com/impg/3BZG-0t0fSKpY-Q6_Y6NyWwqe8hAgeowXuXEDQ/P2tURnFvRw0.jpg?size=725x677&quality=95&sign=009bcd00a8b1b87d1e6199e5fc17080e&type=album"
+                                             alt=""/>
+                                        <span>Avilio bruno</span>
+                                    </div>
+                                    <div className='flex space-x-2 items-center'>
+                                        <img className="w-8 h-8 rounded-full"
+                                             src="https://sun9-56.userapi.com/impg/3BZG-0t0fSKpY-Q6_Y6NyWwqe8hAgeowXuXEDQ/P2tURnFvRw0.jpg?size=725x677&quality=95&sign=009bcd00a8b1b87d1e6199e5fc17080e&type=album"
+                                             alt=""/>
+                                        <span>Avilio bruno</span>
+                                    </div>
+                                    <div className='flex space-x-2 items-center'>
+                                        <img className="w-8 h-8 rounded-full"
+                                             src="https://sun9-56.userapi.com/impg/3BZG-0t0fSKpY-Q6_Y6NyWwqe8hAgeowXuXEDQ/P2tURnFvRw0.jpg?size=725x677&quality=95&sign=009bcd00a8b1b87d1e6199e5fc17080e&type=album"
+                                             alt=""/>
+                                        <span>Avilio bruno</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -44,89 +74,50 @@ const TaskModal = ({title, tags, columnId, taskId, refetch, desc, columnTitle}) 
                     </div>
                 </div>
 
-                <div className='mb-3 flex items-center'>
+                <div className='flex items-center'>
                     <FiMessageSquare size={20} className='mr-2'/>
                     <h3 className="text-lg font-bold text-gray-900">Comments</h3>
                 </div>
 
-                <form className='px-7'>
-                    <div className="w-full mb-4 border-2 border-gray-200 rounded-lg bg-gray-50">
-                        <div className="px-4 py-2 bg-white rounded-t-lg">
-                            <textarea id="comment" rows="4"
-                                      className="w-full px-0 text-sm text-gray-900 bg-white border-0"
-                                      placeholder="Write a comment..." required></textarea>
-                        </div>
-                        <div className="flex items-center justify-between px-3 py-2 border-t">
-                            <button type="submit" className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-zinc-700 rounded-lg hover:bg-zinc-800">
-                                Post comment
+                <div className='px-7 py-3'>
+                    <div className='mb-3 p-3 bg-slate-200 rounded-lg border border-zinc-300'>
+                        <article>
+                            <div className="flex items-center mb-4 space-x-4">
+                                <img className="w-10 h-10 rounded-full"
+                                     src="https://sun9-56.userapi.com/impg/3BZG-0t0fSKpY-Q6_Y6NyWwqe8hAgeowXuXEDQ/P2tURnFvRw0.jpg?size=725x677&quality=95&sign=009bcd00a8b1b87d1e6199e5fc17080e&type=album"
+                                     alt=""/>
+                                <div className="space-y-1 font-medium">
+                                    <p>Jese Leos <time dateTime="2014-08-16 19:00"
+                                                       className="block text-sm font-light text-gray-500">14.02.2023
+                                        21:00:33</time></p>
+                                </div>
+                            </div>
+
+                            <p className="mb-2 text-gray-500">
+                                This is my third Invicta Pro Diver.
+                                They are just fantastic value for money. This one arrived yesterday and the first thing
+                            </p>
+                        </article>
+                    </div>
+                </div>
+
+                <div className='px-7'>
+                    <form>
+                        <div className="flex items-center px-3 py-2 rounded-lg bg-slate-200 border border-zinc-300">
+                            <textarea id="chat" rows="1"
+                                      className="block mr-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 outline-none resize-none"
+                                      placeholder="Your message..."></textarea>
+                            <button type="submit"
+                                    className="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer">
+                                <svg aria-hidden="true" className="w-6 h-6 rotate-90" fill="black"
+                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+                                </svg>
                             </button>
                         </div>
-                    </div>
-                </form>
-
-                {/*<div className="space-y-6">*/}
-                {/*    <div>*/}
-                {/*        <label className="block mb-2 text-sm font-medium text-gray-900">*/}
-                {/*            Task title </label>*/}
-                {/*        <input type="text"*/}
-                {/*               // value={content.text}*/}
-                {/*               // onChange={e => setContent({...content, text: e.target.value})}*/}
-                {/*               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"*/}
-                {/*               placeholder="Name your task" required/>*/}
-                {/*    </div>*/}
-
-                {/*    <div>*/}
-                {/*        <label className="block mb-2 text-sm font-medium text-gray-900">*/}
-                {/*            Task description </label>*/}
-                {/*        <input type="text"*/}
-                {/*               // value={content.description}*/}
-                {/*               // onChange={e => setContent({...content, description: e.target.value})}*/}
-                {/*               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"*/}
-                {/*               placeholder="Task description" required/>*/}
-                {/*    </div>*/}
-
-                {/*    <button*/}
-                {/*            className="w-full text-white bg-zinc-700 hover:bg-zinc-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">*/}
-                {/*        'Update Task'*/}
-                {/*        /!*{!mutationText.isLoading ? 'Update Task' : <ButtonLoader/>}*!/*/}
-                {/*    </button>*/}
-
-                {/*<div>*/}
-                {/*    <label className="block mb-2 text-sm font-medium text-gray-900"> Tags </label>*/}
-
-                {/*    <div className='flex flex-wrap content-start items-center h-auto'>*/}
-
-                {/*        {taskTags.map((tag, i) => {*/}
-                {/*            return <div className='flex mx-1 my-1'>*/}
-                {/*                <Tag key={i} title={tag.title} color={tag.color} className={''}/>*/}
-                {/*                {mutationDeleteTag.isLoading ? <ButtonLoader/> : <button onClick={() => {*/}
-                {/*                    setTag({title: tag.title, id: tag.id})*/}
-                {/*                    setTimeout(() => mutationDeleteTag.mutate(), 0)*/}
-                {/*                }} className='text-zinc-400 ml-1'><FiX size={15}/></button>}*/}
-                {/*            </div>*/}
-                {/*        })}*/}
-
-                {/*        <button ref={button} type="button"*/}
-                {/*                className="text-zinc-400 border border-zinc-400 hover:bg-zinc-400 hover:text-white font-medium rounded-full text-sm p-1.5 text-center inline-flex items-center mr-2">*/}
-                {/*            <FiPlus size={12}/>*/}
-                {/*        </button>*/}
-                {/*    </div>*/}
-
-                {/*    <TagsTaskDropdown state={isOpen} setTag={addTag}/>*/}
-                {/*</div>*/}
-
-                {/*<div>*/}
-                {/*    <label className="block mb-2 text-sm font-medium text-gray-900">*/}
-                {/*        Members </label>*/}
-                {/*    <div className='flex items-center space-x-2'>*/}
-                {/*        /!*<span>Avilio Bruno</span>*!/*/}
-                {/*        <button type="button"*/}
-                {/*                className="text-zinc-400 border border-zinc-400 hover:bg-zinc-400 hover:text-white font-medium rounded-full text-sm p-1.5 text-center inline-flex items-center mr-2">*/}
-                {/*            <FiPlus size={12}/>*/}
-                {/*        </button>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
-                {/*</div>*/}
+                    </form>
+                </div>
             </div>
         </div>
     );

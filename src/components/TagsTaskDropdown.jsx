@@ -8,7 +8,7 @@ const TagsTaskDropdown = ({state, setTag}) => {
     const boardTags = useBoard(state => state.tags)
 
     return (
-        <div id="dropdownDots" className={`${state ? '' : 'hidden'} z-10 absolute bg-white divide-y divide-zinc-800 rounded-lg shadow-2xl w-auto border`}>
+        <div className={`${state ? '' : 'hidden'} z-10 absolute bg-white divide-y divide-zinc-800 rounded-lg shadow-2xl w-auto border`}>
             <ul className="py-3 px-3 text-sm text-gray-700">
                 <div className='flex flex-col space-y-2'>
                 {boardTags.map((tag, i) => {
