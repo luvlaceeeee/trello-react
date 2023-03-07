@@ -12,9 +12,6 @@ import {useUser} from "../../store/store";
 import {useParams} from "react-router-dom";
 
 const Column = ({title, tasks, id, boardRefetch}) => {
-    // const isOpen = useColumnModal(state => state.isOpen)
-    // const content = useColumnModal(state => state.content)
-    // const setOpen = useColumnModal(state => state.setOpen)
     const userId = useUser(state => state.userId)
     const {boardId} = useParams()
 
@@ -34,9 +31,9 @@ const Column = ({title, tasks, id, boardRefetch}) => {
     });
 
     if (isLoading) return (
-        <div className='animate-pulse bg-zinc-200 flex flex-col justify-between items-center flex-none w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'></div>
+        <div
+            className='animate-pulse bg-zinc-200 flex flex-col justify-between items-center flex-none w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'></div>
     )
-
 
     const modalContent = content === 'rename-column' ?
         <RenameColumnModal refetch={boardRefetch} onClick={setOpen} columnId={id}
@@ -45,17 +42,18 @@ const Column = ({title, tasks, id, boardRefetch}) => {
                                title={title}/> : content === 'create-task' ?
                 <CreateTaskModal refetch={refetch} onClick={setOpen} columnId={id}/> : null
     return (
-        <div className='scrollbar overflow-y-auto flex-none' draggable={true}>
-                <Modal isOpen={isOpen} setOpen={setModal}>
-                    {modalContent}
-                </Modal>
+        <div className='scrollbar overflow-y-auto flex-none'>
+            <Modal isOpen={isOpen} setOpen={setModal}>
+                {modalContent}
+            </Modal>
 
-                <div className='bg-slate-200 flex flex-col justify-between items-center w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'>
-                    <ColumnHeader badgeTitle={title} color={colors.black.badge} taskNumber={data.length}
-                                  setOpen={setModal}/>
-                    {data.map(task => <Task key={task.id} tags={task.tags} title={task.text} desc={task.description}
-                                            makers={task.makers} id={task.id} columnId={id} refetch={refetch}/>)}
-                </div>
+            <div
+                className='bg-slate-200 flex flex-col justify-between items-center w-72 rounded-lg p-4 pb-4 shadow-lg space-y-4'>
+                <ColumnHeader badgeTitle={title} color={colors.black.badge} taskNumber={data.length}
+                              setOpen={setModal}/>
+                {data.map(task => <Task key={task.id} tags={task.tags} title={task.text} desc={task.description}
+                                        makers={task.makers} id={task.id} columnId={id} refetch={refetch} columnTitle={title}/>)}
+            </div>
         </div>
     );
 };

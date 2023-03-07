@@ -30,18 +30,18 @@ const BoardHeader = ({title, members, columns}) => {
                 {/*    </div>*/}
                 {/*</div>*/}
 
-                <div className='flex flex-col justify-between items-start space-y-1'>
-                    <span className='text-gray-700 text-lg'>Members:</span>
-                    <div className='text-s, text-zinc-400'>
-                        {members.map((member, i) => {
-                            if (i !== members.length - 1){
-                                return  member + ', '
-                            } else {
-                                return member + '.'
-                            }
-                        })}
-                    </div>
-                </div>
+                {/*<div className='flex flex-col justify-between items-start space-y-1'>*/}
+                {/*    <span className='text-gray-700 text-lg'>Members:</span>*/}
+                {/*    <div className='text-s, text-zinc-400'>*/}
+                {/*        {members.map((member, i) => {*/}
+                {/*            if (i !== members.length - 1){*/}
+                {/*                return  member + ', '*/}
+                {/*            } else {*/}
+                {/*                return member + '.'*/}
+                {/*            }*/}
+                {/*        })}*/}
+                {/*    </div>*/}
+                {/*</div>*/}
 
             </div>
             <ButtonsGroupHeaderBoard/>

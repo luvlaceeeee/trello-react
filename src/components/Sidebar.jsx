@@ -17,14 +17,14 @@ const Sidebar = () => {
 
                     <div className={`flex justify-between items-center duration-300 pl-6 p-2 pb-4 h-16`}>
                         <button onClick={setOpen}><FiAlignJustify size={20}/></button>
-                        <Link to='/welcome'><h1 className={`font-black text-3xl block duration-300 ${!isOpen && 'opacity-0 overflow-hidden hidden'}`}>TRL</h1></Link>
+                        <Link to='/welcome'><h1 className={`font-black text-3xl block duration-300 ${!isOpen && 'opacity-0 overflow-hidden hidden'}`}>JRL</h1></Link>
                     </div>
 
                     <div className='flex flex-col items-start justify-center p-2 space-y-5'>
                         {buttons.map((button, i) =>
                             <Link to={button.link} key={i}>
                                 <button type="button"
-                                        className={`${isOpen ? 'w-full' : 'w-14'} text-zinc-900 bg-white hover:bg-zinc-900 hover:text-white font-bold rounded-xl text-sm p-3 px-4 text-center flex items-center transition-colors ease-in-out duration-300 focus:bg-zinc-900 focus:text-white`}>
+                                        className={`${isOpen ? 'w-44' : 'w-14'} text-zinc-900 bg-white hover:bg-zinc-900 hover:text-white font-bold rounded-xl text-sm p-3 px-4 text-center flex items-center transition-colors ease-in-out duration-300 focus:bg-zinc-900 focus:text-white`}>
                                     <div className="mr-3">
                                         {button.icon}
                                     </div>
