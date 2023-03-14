@@ -5,17 +5,25 @@ import Tag from "./UI/Tag/Tag";
 import {colors} from "../enum/colors";
 
 const TagsTaskDropdown = ({state, setTag}) => {
-    const boardTags = useBoard(state => state.tags)
+    const boardTags = useBoard(state => state.tags).sort((a, b) => a.title.localeCompare(b.title))
 
     return (
-        <div className={`${state ? '' : 'hidden'} z-10 absolute bg-white divide-y divide-zinc-800 rounded-lg shadow-2xl w-auto border`}>
+        <div
+            className={`${state ? '' : 'hidden'} z-10 absolute bg-white divide-y divide-zinc-800 rounded-lg shadow-2xl w-auto border`}>
             <ul className="py-3 px-3 text-sm text-gray-700">
-                <div className='flex flex-col space-y-2'>
-                {boardTags.map((tag, i) => {
-                    return <button key={i} onClick={() => setTag(tag)}> <li>
-                        <Tag title={tag.title} color={tag.color}/>
-                    </li> </button>
-                })}
+                <div className='scrollbar flex flex-col space-y-2 overflow-y-auto h-40'>
+                    {boardTags.map((tag, i) => {
+                        // return <div className="flex items-center space-x-2">
+                        //     <input type="checkbox" value={tag}
+                        //            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"/>
+                        //     <Tag title={tag.title} color={tag.color}/>
+                        // </div>
+                        return <button key={i} onClick={() => setTag(tag)}>
+                            <li>
+                                <Tag title={tag.title} color={tag.color} deleted={false}/>
+                            </li>
+                        </button>
+                    })}
                 </div>
 
                 {/*<li>*/}

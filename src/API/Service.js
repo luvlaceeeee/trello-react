@@ -198,5 +198,27 @@ export const addTaskTag = async (userId, boardId, taskId, tagId) => {
     return data
 }
 
+export const getCommentsByTaskId = async (userId, boardId, taskId) => {
+    const {data} = await axios.get(`/comments`, {
+        params: {
+            userId: userId,
+            boardId: boardId,
+            taskId: taskId
+        }
+    })
+    return data
+}
 
+export const createCommentByTaskId = async (userId, boardId, taskId, text) => {
+    const {data} = await axios.post(`/comments`, {
+        text: text
+    },{
+        params: {
+            userId: userId,
+            boardId: boardId,
+            taskId: taskId
+        }
+    })
+    return data
+}
 

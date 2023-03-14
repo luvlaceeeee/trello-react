@@ -14,10 +14,11 @@ const UpdateTaskModal = ({columnId, onClick, refetch, taskId, title, desc, tags}
 
     const [isOpen, setIsOpen] = useState(false);
     const button = useRef(null);
+    const list = useRef(null);
     useEffect(() => window.addEventListener('click', ev => {
         if (button.current && button.current.contains(ev.target)) {
             setIsOpen(!isOpen)
-        } else {
+        } else if (list.current && list.current.contains(ev.target)) {
             setIsOpen(false)
         }
     }));
@@ -48,9 +49,9 @@ const UpdateTaskModal = ({columnId, onClick, refetch, taskId, title, desc, tags}
     const mutationDeleteTag = useMutation(["delete-task-tag", userId, boardId, taskId, tag.id],
         () => deleteTaskTag(userId, boardId, taskId, tag.id), {
             onSuccess: () => {
-                refetch()
                 deleteTag(tag.title)
                 setTag({title: '', id: 0})
+                refetch()
             }
         })
 
@@ -98,9 +99,9 @@ const UpdateTaskModal = ({columnId, onClick, refetch, taskId, title, desc, tags}
                         <div className='flex flex-wrap content-start items-center h-auto'>
 
                             {taskTags.map((tag, i) => {
-                                return <div className='flex mx-1 my-1'>
-                                    <Tag key={i} title={tag.title} color={tag.color} className={''}/>
-                                    {mutationDeleteTag.isLoading ? <ButtonLoader/> : <button onClick={() => {
+                                return <div className='flex mx-1 my-1 items-center'>
+                                    <Tag key={i} title={tag.title} color={tag.color}/>
+                                    {mutationDeleteTag.isLoading ? <ButtonLoader className='mx-1'/> : <button onClick={() => {
                                         setTag({title: tag.title, id: tag.id})
                                         setTimeout(() => mutationDeleteTag.mutate(), 0)
                                     }} className='text-zinc-400 ml-1'><FiX size={15}/></button>}
@@ -113,7 +114,7 @@ const UpdateTaskModal = ({columnId, onClick, refetch, taskId, title, desc, tags}
                             </button>
                         </div>
 
-                        <TagsTaskDropdown state={isOpen} setTag={addTag}/>
+                        <TagsTaskDropdown ref={list} state={isOpen} setTag={addTag}/>
                     </div>
 
                     {/*<div>*/}

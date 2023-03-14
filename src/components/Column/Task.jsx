@@ -38,8 +38,7 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId, columnTitle}) =
 
     return (
         <>
-            <div className='bg-white flex flex-col justify-between items-start w-full rounded-lg p-4 pb-3 shadow'
-                 draggable={!isModalOpen}>
+            <div className='bg-white flex flex-col justify-between items-start w-full rounded-lg p-4 pb-3 shadow'>
 
                 <Modal isOpen={isModalOpen} setOpen={setModal}>
                     {modalContent}
