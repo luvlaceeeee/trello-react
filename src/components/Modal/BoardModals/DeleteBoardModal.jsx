@@ -6,7 +6,7 @@ import {deleteBoardById} from "../../../API/Service";
 import ButtonLoader from "../../UI/ButtonLoader";
 
 const DeleteBoardModal = ({title, onClick}) => {
-    const userId = useUser(state => state.userId)
+    const userId = useUser(state => state.id)
     const {boardId} = useParams()
     const navigate = useNavigate()
 

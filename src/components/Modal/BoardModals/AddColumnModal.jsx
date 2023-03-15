@@ -7,7 +7,7 @@ import ButtonLoader from "../../UI/ButtonLoader";
 
 const AddColumnModal = ({onClick, refetch}) => {
     const [column, setColumn] = useState({title: ''})
-    const userId = useUser(state => state.userId)
+    const userId = useUser(state => state.id)
     const {boardId} = useParams()
 
     const mutation = useMutation(["delete-board", userId, boardId, column.title], () => createColumn(userId, boardId, column.title), {

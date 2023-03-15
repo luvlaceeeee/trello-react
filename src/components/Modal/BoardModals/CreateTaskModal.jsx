@@ -10,7 +10,7 @@ import {colors} from "../../../enum/colors";
 import TagsTaskDropdown from "../../TagsTaskDropdown";
 
 const CreateTaskModal = ({columnId, onClick, refetch}) => {
-    const userId = useUser(state => state.userId)
+    const userId = useUser(state => state.id)
     const {boardId} = useParams()
 
     const [isOpen, setIsOpen] = useState(false);

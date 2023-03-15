@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
 import {useUser} from "../../../store/store";
 import {useParams} from "react-router-dom";
-import {FiAlignLeft, FiHash, FiMessageSquare, FiPlus, FiX} from "react-icons/fi";
+import {FiAlignLeft, FiClock, FiHash, FiMessageSquare} from "react-icons/fi";
 import Tag from "../../UI/Tag/Tag";
-import ButtonLoader from "../../UI/ButtonLoader";
 import {useMutation, useQuery} from "@tanstack/react-query";
-import {createCommentByTaskId, getBoardById, getCommentsByTaskId, renameColumn} from "../../../API/Service";
+import {createCommentByTaskId, getCommentsByTaskId} from "../../../API/Service";
 import LoadingScreen from "../../UI/LoadingScreen";
 
 const TaskModal = ({title, tags, columnId, taskId, desc, columnTitle}) => {
-    const userId = useUser(state => state.userId)
+    const userId = useUser(state => state.id)
     const {boardId} = useParams()
 
     const [commentText, setCommentText] = useState('')
@@ -43,13 +42,16 @@ const TaskModal = ({title, tags, columnId, taskId, desc, columnTitle}) => {
                     </div>
 
                     <div className='px-7'>
-                        <div className='mb-4 flex items-center'>
+                        <div className='mb-4 flex justify-between items-center'>
                         <span className='text-sm text-zinc-400'>In column <span
                             className='underline decoration-2'>{columnTitle}</span></span>
+                            <div className='flex space-x-1 items-center text-gray-400'>
+                                <span className='text-xs'>10 Nov 2021</span>
+                                <FiClock/>
+                            </div>
                         </div>
 
                         <div className='flex justify-between'>
-
                             <div className='w-1/2'>
                                 <div className='mb-1'><span className='uppercase text-sm font-bold'>Tags</span></div>
                                 <div className='flex flex-wrap content-start items-center h-auto'>
@@ -62,6 +64,7 @@ const TaskModal = ({title, tags, columnId, taskId, desc, columnTitle}) => {
                             </div>
                             <div className='w-1/2'>
                                 <div className='mb-1'><span className='uppercase text-sm font-bold'>Members</span></div>
+
                                 <div className='flex flex-col space-y-2 h-auto'>
                                     <div className='flex space-x-2 items-center'>
                                         <img className="w-8 h-8 rounded-full"
@@ -69,19 +72,8 @@ const TaskModal = ({title, tags, columnId, taskId, desc, columnTitle}) => {
                                              alt=""/>
                                         <span>Avilio bruno</span>
                                     </div>
-                                    <div className='flex space-x-2 items-center'>
-                                        <img className="w-8 h-8 rounded-full"
-                                             src="https://sun9-56.userapi.com/impg/3BZG-0t0fSKpY-Q6_Y6NyWwqe8hAgeowXuXEDQ/P2tURnFvRw0.jpg?size=725x677&quality=95&sign=009bcd00a8b1b87d1e6199e5fc17080e&type=album"
-                                             alt=""/>
-                                        <span>Avilio bruno</span>
-                                    </div>
-                                    <div className='flex space-x-2 items-center'>
-                                        <img className="w-8 h-8 rounded-full"
-                                             src="https://sun9-56.userapi.com/impg/3BZG-0t0fSKpY-Q6_Y6NyWwqe8hAgeowXuXEDQ/P2tURnFvRw0.jpg?size=725x677&quality=95&sign=009bcd00a8b1b87d1e6199e5fc17080e&type=album"
-                                             alt=""/>
-                                        <span>Avilio bruno</span>
-                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -109,13 +101,13 @@ const TaskModal = ({title, tags, columnId, taskId, desc, columnTitle}) => {
                                 <article>
                                     <div className="flex items-center mb-4 space-x-4">
                                         <img className="w-10 h-10 rounded-full"
-                                             src="https://sun9-56.userapi.com/impg/3BZG-0t0fSKpY-Q6_Y6NyWwqe8hAgeowXuXEDQ/P2tURnFvRw0.jpg?size=725x677&quality=95&sign=009bcd00a8b1b87d1e6199e5fc17080e&type=album"
+                                             src={comment.user.avatar}
                                              alt=""/>
                                         <div className="space-y-1 font-medium">
-                                            {/*<p>{comment.user}*/}
-                                            {/*    <time dateTime="2014-08-16 19:00"*/}
-                                            {/*          className="block text-sm font-light text-gray-500">{comment.data}</time>*/}
-                                            {/*</p>*/}
+                                            <p>{comment.user.fullName}
+                                                <time dateTime="2018-07-07"
+                                                      className="block text-sm font-light text-gray-500">{comment.date}</time>
+                                            </p>
                                         </div>
                                     </div>
 
@@ -125,23 +117,6 @@ const TaskModal = ({title, tags, columnId, taskId, desc, columnTitle}) => {
                                 </article>
                             </div>
                         })}
-                    {/*<article>*/}
-                    {/*    <div className="flex items-center mb-4 space-x-4">*/}
-                    {/*        <img className="w-10 h-10 rounded-full"*/}
-                    {/*             src="https://sun9-56.userapi.com/impg/3BZG-0t0fSKpY-Q6_Y6NyWwqe8hAgeowXuXEDQ/P2tURnFvRw0.jpg?size=725x677&quality=95&sign=009bcd00a8b1b87d1e6199e5fc17080e&type=album"*/}
-                    {/*             alt=""/>*/}
-                    {/*        <div className="space-y-1 font-medium">*/}
-                    {/*            <p>Jese Leos <time dateTime="2014-08-16 19:00"*/}
-                    {/*                               className="block text-sm font-light text-gray-500">14.02.2023*/}
-                    {/*                21:00:33</time></p>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-
-                    {/*    <p className="mb-2 text-gray-500">*/}
-                    {/*        This is my third Invicta Pro Diver.*/}
-                    {/*        They are just fantastic value for money. This one arrived yesterday and the first thing*/}
-                    {/*    </p>*/}
-                    {/*</article>*/}
                 </div>
 
                 <div className='px-7 mb-1'>
@@ -156,6 +131,7 @@ const TaskModal = ({title, tags, columnId, taskId, desc, columnTitle}) => {
                                     onClick={(event) => {
                                         event.preventDefault()
                                         mutation.mutate()
+                                        setCommentText('')
                                     }}
                                     className="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer">
                                 <svg aria-hidden="true" className="w-6 h-6 rotate-90" fill="black"

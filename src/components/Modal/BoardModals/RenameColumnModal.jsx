@@ -7,7 +7,7 @@ import {renameColumn, updateBoardById} from "../../../API/Service";
 
 const RenameColumnModal = ({columnId, onClick, refetch, title}) => {
     const [name, setName] = useState({title: title})
-    const userId = useUser(state => state.userId)
+    const userId = useUser(state => state.id)
     const {boardId} = useParams()
 
     const mutation = useMutation(["rename-column", userId, boardId, columnId, name.title], () => renameColumn(userId, boardId, columnId, name.title), {

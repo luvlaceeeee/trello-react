@@ -4,9 +4,14 @@ import {persist} from "zustand/middleware";
 
 export const useUser = create(
     persist((set, get) => ({
-            userId: null,
-            addUserId: () => {
-                set({userId: 1})
+            id: '',
+            email: '',
+            name: '',
+            surname: '',
+            avatar: '',
+            yandexId: '',
+            addUser: (user) => {
+                set({...user})
             }
         }), {name: 'user-storage', version: 1}
     ))

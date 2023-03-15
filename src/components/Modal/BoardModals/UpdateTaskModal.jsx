@@ -9,7 +9,7 @@ import TagsTaskDropdown from "../../TagsTaskDropdown";
 import ButtonLoader from "../../UI/ButtonLoader";
 
 const UpdateTaskModal = ({columnId, onClick, refetch, taskId, title, desc, tags}) => {
-    const userId = useUser(state => state.userId)
+    const userId = useUser(state => state.id)
     const {boardId} = useParams()
 
     const [isOpen, setIsOpen] = useState(false);

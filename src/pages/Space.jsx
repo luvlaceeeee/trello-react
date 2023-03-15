@@ -12,14 +12,15 @@ import LoadingScreen from "../components/UI/LoadingScreen";
 import {useQuery} from "@tanstack/react-query";
 import {getAllBoards} from "../API/Service";
 import AddBoardModal from "../components/Modal/SpaceModals/AddBoardModal";
+import {useParams} from "react-router-dom";
 
 const Space = () => {
     const isOpen = useSpaceModal(state => state.isOpen)
     const setOpen = useSpaceModal(state => state.setOpen)
 
-    const userId = useUser(state => state.userId)
+    const userId = useUser(state => state.id)
 
-    const { isLoading, error, data, refetch } = useQuery(["all-boards", userId], () => getAllBoards(userId), {
+    const {isLoading, error, data, refetch} = useQuery(["all-boards", userId], () => getAllBoards(userId), {
         refetchOnWindowFocus: false
     });
 
@@ -46,9 +47,9 @@ const Space = () => {
                     </div>
 
                     <ColumnLayout>
-                            {data.map(board => {
-                                return <BoardColumn key={board.id} title={board.title} id={board.id}/>
-                            })}
+                        {data.map(board => {
+                            return <BoardColumn key={board.id} title={board.title} id={board.id}/>
+                        })}
                         <AddBoardColumn title={`Add new board`}/>
                     </ColumnLayout>
 

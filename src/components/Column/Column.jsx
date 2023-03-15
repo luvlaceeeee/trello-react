@@ -12,7 +12,7 @@ import {useUser} from "../../store/store";
 import {useParams} from "react-router-dom";
 
 const Column = ({title, tasks, id, boardRefetch}) => {
-    const userId = useUser(state => state.userId)
+    const userId = useUser(state => state.id)
     const {boardId} = useParams()
 
     const [isOpen, setOpen] = useState(false)
@@ -52,7 +52,7 @@ const Column = ({title, tasks, id, boardRefetch}) => {
                 <ColumnHeader badgeTitle={title} color={colors.black.badge} taskNumber={data.length}
                               setOpen={setModal}/>
                 {data.map(task => <Task key={task.id} tags={task.tags} title={task.text} desc={task.description}
-                                        makers={task.makers} id={task.id} columnId={id} refetch={refetch} columnTitle={title}/>)}
+                                        makers={task.makers} id={task.id} columnId={id} refetch={refetch} columnTitle={title} comments={task.comments}/>)}
             </div>
         </div>
     );

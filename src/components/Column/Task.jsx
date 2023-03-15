@@ -1,13 +1,14 @@
 import React, {useEffect, useRef, useState} from 'react';
 import Tag from "../UI/Tag/Tag";
-import {FiAlignLeft, FiClock, FiMoreVertical} from "react-icons/fi";
+import {FiAlignLeft, FiClock, FiMessageSquare, FiMoreVertical} from "react-icons/fi";
 import TaskDropDown from "../TaskDropDown";
 import Modal from "../Modal/Modal";
 import DeleteTaskModal from "../Modal/BoardModals/DeleteTaskModal";
 import UpdateTaskModal from "../Modal/BoardModals/UpdateTaskModal";
 import TaskModal from "../Modal/BoardModals/TaskModal";
+import AddUserTaskModal from "../Modal/BoardModals/AddUserTaskModal";
 
-const Task = ({tags, title, makers, desc, id, refetch, columnId, columnTitle}) => {
+const Task = ({tags, title, makers, desc, id, refetch, columnId, columnTitle, comments}) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const button = useRef(null);
@@ -32,7 +33,7 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId, columnTitle}) =
             <UpdateTaskModal refetch={refetch} columnId={columnId} onClick={setModalOpen} taskId={id}
                              title={title} desc={desc} tags={tags}/> : content === 'open-task' ?
                 <TaskModal refetch={refetch} columnId={columnId} onClick={setModalOpen} taskId={id}
-                           title={title} desc={desc} tags={tags} columnTitle={columnTitle}/> : null
+                           title={title} desc={desc} tags={tags} columnTitle={columnTitle}/> : content === 'open-task' ? <AddUserTaskModal makers={makers}/> : null
 
     const firstLetter = title.split(' ')[0]
 
@@ -51,7 +52,7 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId, columnTitle}) =
                         </div>
                         <div className='relative'>
                             <button ref={button} type="button"
-                                    className="text-gray-600 hover:bg-gray-400 hover:text-white hover:bg-opacity-70 font-medium rounded-full p-2.5 mb-1 transition-colors ease-in-out duration-300">
+                                    className="text-gray-600 hover:bg-gray-400 hover:text-white hover:bg-opacity-70 font-medium rounded-full p-1.5 mb-1 transition-colors ease-in-out duration-300">
                                 <FiMoreVertical size={15}/>
                             </button>
                             <TaskDropDown state={isOpen} setOpen={setModal}/>
@@ -66,7 +67,7 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId, columnTitle}) =
                     </div>
                     <div className='relative z-0'>
                         <button ref={button} type="button"
-                                className="text-gray-600 hover:bg-gray-400 hover:text-white hover:bg-opacity-70 font-medium rounded-full p-2.5 mb-1 transition-colors ease-in-out duration-300">
+                                className="text-gray-600 hover:bg-gray-400 hover:text-white hover:bg-opacity-70 font-medium rounded-full p-1.5 mb-1 transition-colors ease-in-out duration-300">
                             <FiMoreVertical size={15}/>
                         </button>
                         <TaskDropDown state={isOpen} setOpen={setModal}/>
@@ -77,14 +78,20 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId, columnTitle}) =
                     <span className='text-gray-400 text-sm h-auto'>{desc}</span>
                 </div>
 
-                <div className='flex flex-row justify-between items-end w-full text-gray-400'>
-                    <button>
-                        <FiAlignLeft onClick={() => setModal('open-task')}/>
+                <div className='flex flex-row justify-between items-center w-full text-gray-400'>
+                    <button
+                        className='text-gray-600 hover:bg-gray-400 hover:text-white hover:bg-opacity-70 font-medium rounded-full p-1 transition-colors ease-in-out duration-300'>
+                        <FiAlignLeft onClick={() => setModal('open-task')} size={18}/>
                     </button>
 
                     <div className='flex space-x-1 items-center'>
+                        <FiMessageSquare/>
+                        <span className='text-gray-400 text-xs'>{comments.length}</span>
+                    </div>
+
+                    <div className='flex space-x-1 items-center'>
                         <FiClock/>
-                        <span className='text-gray-400 text-xs'>10 Nov 2021</span>
+                        <span className='text-gray-400 text-xs'>10 Nov</span>
                     </div>
 
                     <div className="flex -space-x-4">

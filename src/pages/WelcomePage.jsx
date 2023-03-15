@@ -1,27 +1,24 @@
 import React from 'react';
-import {Link} from "react-router-dom";
-import {useUser} from "../store/store";
 
 const WelcomePage = () => {
-    const login = useUser(state => state.addUserId)
-
     return (
-        <div className='flex flex-col justify-center items-center my-10'>
-            <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
-                Jirello</h1>
-            <p className="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">Log in</p>
-            <Link to='/space'>
-                {/*<a href="#"*/}
-                {/*   onClick={login}*/}
-                {/*   className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800">*/}
-                {/*    Go work*/}
-                {/*    <svg className="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20"*/}
-                {/*         xmlns="http://www.w3.org/2000/svg">*/}
-                {/*        <path fill-rule="evenodd"*/}
-                {/*              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"*/}
-                {/*              clip-rule="evenodd"></path>*/}
-                {/*    </svg>*/}
-                {/*</a>*/}
+        <div className='flex flex-col items-center justify-between'>
+            <img
+                src='https://sun9-55.userapi.com/impg/Hww1lf213O3xj-L1bPSKwpV6Z6ObuGBBQVkL0g/8CtaweG_TJo.jpg?size=1300x1300&quality=96&sign=e387b31d3f9c2cf43766d07425d940ee&type=album'
+                alt=""
+                width={400}
+                height={500}
+                className='my-5'/>
+
+            <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">We
+                invest in the world’s potential</h1>
+            <p className="mb-10 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48">Here
+                at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and
+                drive economic growth.</p>
+
+            <p className="mb-3 text-lg font-sma text-gray-500">Log in</p>
+
+            <a href='https://oauth.yandex.ru/authorize?response_type=code&client_id=9c6d51a918cc40168ee4345aa6e6e11f'>
                 <svg width="260" height="56" viewBox="0 0 260 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="260" height="56" rx="28" fill="black"></rect>
                     <rect x="44" y="16" width="24" height="24" rx="12" fill="#FC3F1D"></rect>
@@ -67,7 +64,7 @@ const WelcomePage = () => {
                         d="M205.615 21.528H209.487C210.298 21.528 211.05 21.6187 211.743 21.8C212.447 21.9813 213.055 22.28 213.567 22.696C214.09 23.112 214.495 23.6613 214.783 24.344C215.082 25.0267 215.231 25.8693 215.231 26.872C215.231 27.8853 215.082 28.776 214.783 29.544C214.495 30.3013 214.084 30.936 213.551 31.448C213.028 31.96 212.404 32.3493 211.679 32.616C210.964 32.872 210.18 33 209.327 33H205.615V21.528ZM207.551 23.208V31.336H209.391C209.956 31.336 210.468 31.2507 210.927 31.08C211.396 30.9093 211.796 30.648 212.127 30.296C212.468 29.944 212.73 29.496 212.911 28.952C213.103 28.3973 213.199 27.7413 213.199 26.984C213.199 26.2373 213.108 25.624 212.927 25.144C212.746 24.6533 212.49 24.264 212.159 23.976C211.839 23.688 211.455 23.4907 211.007 23.384C210.559 23.2667 210.074 23.208 209.551 23.208H207.551Z"
                         fill="white"></path>
                 </svg>
-            </Link>
+            </a>
         </div>
     );
 };

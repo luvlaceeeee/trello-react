@@ -3,6 +3,15 @@ import axios from "axios";
 const BASIC_URL = 'http://localhost:7841'
 axios.defaults.baseURL = BASIC_URL
 
+export const getUser = async (code) => {
+    const {data} = await axios.get('/login', {
+        params: {
+            code: code,
+        }
+    })
+    return data
+}
+
 export const getAllBoards = async (userId) => {
     const {data} = await axios.get('/boards', {
         params: {
@@ -217,6 +226,24 @@ export const createCommentByTaskId = async (userId, boardId, taskId, text) => {
             userId: userId,
             boardId: boardId,
             taskId: taskId
+        }
+    })
+    return data
+}
+
+export const getLink = async (boardId, userId) => {
+    const {data} = await axios.get(`/boards/${boardId}/link`, {
+        params: {
+            userId: userId,
+        }
+    })
+    return data
+}
+
+export const acceptInvite = async (userId, inviteCode) => {
+    const {data} = await axios.get(`/${inviteCode}`, {
+        params: {
+            userId: userId,
         }
     })
     return data

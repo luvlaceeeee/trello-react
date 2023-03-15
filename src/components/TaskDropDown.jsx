@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {FiEdit3, FiPlus, FiTrash2} from "react-icons/fi";
+import {FiEdit3, FiPlus, FiTrash2, FiUserPlus} from "react-icons/fi";
 
 const TaskDropDown = ({state, setOpen}) => {
     return (
@@ -20,6 +20,12 @@ const TaskDropDown = ({state, setOpen}) => {
                 <li>
                     <div onClick={() => setOpen('delete-task')} className='cursor-pointer flex items-center block px-4 py-2 hover:bg-gray-100'>
                         <FiTrash2/>
+                        {/*<button className="px-2 hover:bg-gray-100">Delete task</button>*/}
+                    </div>
+                </li>
+                <li>
+                    <div onClick={() => setOpen('add-user')} className='cursor-pointer flex items-center block px-4 py-2 hover:bg-gray-100'>
+                        <FiUserPlus/>
                         {/*<button className="px-2 hover:bg-gray-100">Delete task</button>*/}
                     </div>
                 </li>

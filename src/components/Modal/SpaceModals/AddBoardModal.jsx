@@ -9,7 +9,7 @@ import ButtonLoader from "../../UI/ButtonLoader";
 
 const AddBoardModal = ({refetch}) => {
     const [boardTitle, setBoardTitle] = useState({title:''})
-    const userId = useUser(state => state.userId)
+    const userId = useUser(state => state.id)
     const setOpen = useSpaceModal(state => state.setOpen)
 
     const mutation = useMutation(["create-board", userId, boardTitle], () => createBoard(userId, boardTitle.title), {

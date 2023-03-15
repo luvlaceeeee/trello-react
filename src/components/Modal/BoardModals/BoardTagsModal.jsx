@@ -8,7 +8,7 @@ import ButtonLoader from "../../UI/ButtonLoader";
 import {FiEdit, FiX} from "react-icons/fi";
 
 const BoardTagsModal = ({refetch}) => {
-    const userId = useUser(state => state.userId)
+    const userId = useUser(state => state.id)
     const {boardId} = useParams()
     const allTags = useBoard(state => state.tags).sort((a, b) => a.title.localeCompare(b.title))
 
@@ -127,8 +127,6 @@ const BoardTagsModal = ({refetch}) => {
                                 className="w-full text-white bg-zinc-700 hover:bg-zinc-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                             {!mutationCreate.isLoading ? 'Create tag' : <ButtonLoader/>}
                         </button>
-
-                        {/*{valid ? '' :}*/}
                     </div>
 
                     <div className={`${isOpenCreate ? 'hidden' : ''}`}>

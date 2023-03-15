@@ -8,7 +8,7 @@ import ButtonLoader from "../../UI/ButtonLoader";
 
 const RenameBoardModal = ({refetch, onClick, title}) => {
     const [name, setName] = useState({title: title})
-    const userId = useUser(state => state.userId)
+    const userId = useUser(state => state.id)
     const {boardId} = useParams()
 
     const mutation = useMutation(["rename-board", userId, boardId, name.title], () => updateBoardById(userId, boardId, name.title), {

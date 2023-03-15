@@ -9,7 +9,7 @@ import {deleteBoardTag, updateBoardById} from "../../../API/Service";
 import ButtonLoader from "../ButtonLoader";
 
 const Tag = ({title, color, className, tagId, refetch, deleted}) => {
-    const userId = useUser(state => state.userId)
+    const userId = useUser(state => state.id)
     const {boardId} = useParams()
 
     const mutation = useMutation(["delete-board-tag", userId, boardId, tagId], () => deleteBoardTag(userId, boardId, tagId), {

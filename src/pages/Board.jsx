@@ -19,7 +19,7 @@ import BoardTagsModal from "../components/Modal/BoardModals/BoardTagsModal";
 import BoardHeaderLoader from "../components/Board/BoardHeaderLoader";
 
 const Board = () => {
-    const userId = useUser(state => state.userId)
+    const userId = useUser(state => state.id)
     const {boardId} = useParams()
 
     const isOpen = useBoardModal(state => state.isOpen)
