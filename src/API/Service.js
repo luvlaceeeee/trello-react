@@ -241,7 +241,7 @@ export const getLink = async (boardId, userId) => {
 }
 
 export const acceptInvite = async (userId, inviteCode) => {
-    const {data} = await axios.get(`/${inviteCode}`, {
+    const {data} = await axios.put(`/${inviteCode}`, {}, {
         params: {
             userId: userId,
         }

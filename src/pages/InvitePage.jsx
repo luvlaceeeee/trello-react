@@ -7,12 +7,9 @@ import {useUser} from "../store/store";
 const InvitePage = () => {
     const userId = useUser(state => state.id)
     const {inviteCode} = useParams()
+    console.log(userId)
 
-    const mutation = useMutation(["accept-invite", userId, inviteCode], () => acceptInvite(userId, inviteCode), {
-        onSuccess: () => {
-
-        }
-    })
+    const mutation = useMutation(["accept-invite", userId, inviteCode], () => acceptInvite(userId, inviteCode), {})
 
     return (
         <div>
