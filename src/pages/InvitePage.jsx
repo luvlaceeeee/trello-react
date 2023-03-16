@@ -12,11 +12,17 @@ const InvitePage = () => {
     const mutation = useMutation(["accept-invite", userId, inviteCode], () => acceptInvite(userId, inviteCode), {})
 
     return (
-        <div>
+        <div className='flex flex-col justify-around h-screen items-center'>
+            <div className='flex flex-col items-center'>
+                <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">You were invited to the board</h1>
+                <p className="text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48">
+                    Click on button to accept invite</p>
+            </div>
+
             <Link to='/space'>
                 <div className='flex justify-center'>
                     <button type="button"
-                            className="text-white bg-zinc-800 hover:bg-zinc-900 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2" onClick={() => mutation.mutate()}>
+                            className="text-white bg-zinc-800 hover:bg-zinc-900 font-medium rounded-lg text-lg px-10 py-5" onClick={() => mutation.mutate()}>
                         Accept invite
                     </button>
                 </div>
