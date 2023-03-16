@@ -258,3 +258,15 @@ export const deleteComment = async (userId, boardId, commentId) => {
     })
     return data
 }
+
+export const addUserToTask = async (userId, boardId, taskId, memberId) => {
+    const {data} = await axios.put(`/tasks/${taskId}/makers`, {
+        userId: memberId
+    }, {
+        params: {
+            userId: userId,
+            boardId: boardId
+        }
+    })
+    return data
+}

@@ -33,7 +33,8 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId, columnTitle, co
             <UpdateTaskModal refetch={refetch} columnId={columnId} onClick={setModalOpen} taskId={id}
                              title={title} desc={desc} tags={tags}/> : content === 'open-task' ?
                 <TaskModal refetch={refetch} columnId={columnId} onClick={setModalOpen} taskId={id}
-                           title={title} desc={desc} tags={tags} columnTitle={columnTitle} members={makers}/> : content === 'open-task' ? <AddUserTaskModal makers={makers}/> : null
+                           title={title} desc={desc} tags={tags} columnTitle={columnTitle}
+                           members={makers}/> : content === 'add-user' ? <AddUserTaskModal makers={makers} taskId={id} refetch={refetch}/> : null
 
     const firstLetter = title.split(' ')[0]
 
@@ -48,7 +49,9 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId, columnTitle, co
                 {tags.length !== 0 ? <>
                     <div className='flex flex-row items-center w-full pb-2'>
                         <div className="flex flex-1 h-auto flex-wrap">
-                            {tags.sort((a, b) => a.title.localeCompare(b.title)).map(tag => <Tag title={tag.title} color={tag.color} className={'mx-1 my-1'}/>)}
+                            {tags.sort((a, b) => a.title.localeCompare(b.title)).map(tag => <Tag title={tag.title}
+                                                                                                 color={tag.color}
+                                                                                                 className={'mx-1 my-1'}/>)}
                         </div>
                         <div className='relative'>
                             <button ref={button} type="button"
