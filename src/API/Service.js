@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASIC_URL = 'http://localhost:7841'
+const BASIC_URL = 'http://176.212.185.97:7841'
 axios.defaults.baseURL = BASIC_URL
 
 export const getUser = async (code) => {
@@ -249,3 +249,12 @@ export const acceptInvite = async (userId, inviteCode) => {
     return data
 }
 
+export const deleteComment = async (userId, boardId, commentId) => {
+    const {data} = await axios.delete(`/comments/${commentId}`, {
+        params: {
+            userId: userId,
+            boardId: boardId
+        }
+    })
+    return data
+}

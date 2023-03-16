@@ -12,6 +12,14 @@ export const useUser = create(
             yandexId: '',
             addUser: (user) => {
                 set({...user})
+            },
+            logout: () => {
+                set({id: '',
+                    email: '',
+                    name: '',
+                    surname: '',
+                    avatar: '',
+                    yandexId: '',})
             }
         }), {name: 'user-storage', version: 1}
     ))

@@ -2,8 +2,12 @@ import React from 'react';
 import {FiAlignJustify, FiLogOut} from "react-icons/fi";
 import {useSidebar} from "../store/uiStore";
 import {Link, Outlet} from "react-router-dom";
+import {useUser} from "../store/store";
 
 const Sidebar = () => {
+    const avatar = useUser(state => state.avatar)
+    const logout = useUser(state => state.logout)
+    const userName = useUser(state => state.name) + ' ' + useUser(state => state.surname)
 
     const setOpen = useSidebar((state) => state.setOpen)
     const isOpen = useSidebar(state => state.isOpen)
@@ -24,8 +28,7 @@ const Sidebar = () => {
                                     alt=""
                                     width={40}
                                     height={50}
-                                className={`${!isOpen && 'opacity-0 overflow-hidden hidden'}`}/>
-                                {/*<h1 className={`font-light text-3xl block duration-300 text-zinc-500 ${!isOpen && 'opacity-0 overflow-hidden hidden'}`}>JRL</h1>*/}
+                                    className={`${!isOpen && 'opacity-0 overflow-hidden hidden'}`}/>
                             </Link>
                         </div>
 
@@ -48,19 +51,43 @@ const Sidebar = () => {
                         </div>
                     </div>
 
-                    <div className='w-full p-2 flex justify-center'>
-                        <button type="button"
-                                className="text-zinc-900 bg-white hover:bg-zinc-900 hover:text-white font-bold rounded-xl text-sm p-3 px-4 w-10/12
-                                        text-center flex items-center transition-colors ease-in-out duration-300">
-                            <div className="mr-3">
-                                {<FiLogOut size={20}/>}
-                            </div>
 
-                            <div
-                                className={`whitespace-pre duration-300 ${!isOpen && 'opacity-0 translate-x-16 overflow-hidden'}`}>
-                                Log out
-                            </div>
-                        </button>
+                    <div className='w-full'>
+                        <div className='p-2 flex justify-center items-center'>
+                            <button type="button"
+                                    className="text-zinc-900 bg-white font-bold rounded-xl text-sm p-3 px-4 pl-2 w-10/12
+                                        text-center flex items-center transition-colors ease-in-out duration-300">
+                                <div className="mr-3">
+                                    <img
+                                        src={avatar}
+                                        alt=""
+                                        className="w-8 h-8 rounded-full min-w-fit"/>
+                                </div>
+
+                                <div
+                                    className={`whitespace-pre break-all duration-300 ${!isOpen && 'opacity-0 translate-x-16 overflow-hidden'}`}>
+                                    {userName}
+                                </div>
+                            </button>
+                        </div>
+
+                        <div className='p-2'>
+                            <Link to={'/welcome'} className={'w-full flex justify-center items-center'}>
+                                <button type="button"
+                                        className="text-zinc-900 bg-white hover:bg-red-900 hover:text-white font-bold rounded-xl text-sm p-3 px-4 w-10/12
+                                        text-center flex items-center transition-colors ease-in-out duration-300"
+                                        onClick={() => logout()}>
+                                    <div className="mr-3">
+                                        {<FiLogOut size={20}/>}
+                                    </div>
+
+                                    <div
+                                        className={`whitespace-pre duration-300 ${!isOpen && 'opacity-0 translate-x-16 overflow-hidden'}`}>
+                                        Log out
+                                    </div>
+                                </button>
+                            </Link>
+                        </div>
                     </div>
 
                 </div>

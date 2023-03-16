@@ -33,7 +33,7 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId, columnTitle, co
             <UpdateTaskModal refetch={refetch} columnId={columnId} onClick={setModalOpen} taskId={id}
                              title={title} desc={desc} tags={tags}/> : content === 'open-task' ?
                 <TaskModal refetch={refetch} columnId={columnId} onClick={setModalOpen} taskId={id}
-                           title={title} desc={desc} tags={tags} columnTitle={columnTitle}/> : content === 'open-task' ? <AddUserTaskModal makers={makers}/> : null
+                           title={title} desc={desc} tags={tags} columnTitle={columnTitle} members={makers}/> : content === 'open-task' ? <AddUserTaskModal makers={makers}/> : null
 
     const firstLetter = title.split(' ')[0]
 
@@ -48,7 +48,7 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId, columnTitle, co
                 {tags.length !== 0 ? <>
                     <div className='flex flex-row items-center w-full pb-2'>
                         <div className="flex flex-1 h-auto flex-wrap">
-                            {tags.map(tag => <Tag title={tag.title} color={tag.color} className={'mx-1 my-1'}/>)}
+                            {tags.sort((a, b) => a.title.localeCompare(b.title)).map(tag => <Tag title={tag.title} color={tag.color} className={'mx-1 my-1'}/>)}
                         </div>
                         <div className='relative'>
                             <button ref={button} type="button"
@@ -94,14 +94,26 @@ const Task = ({tags, title, makers, desc, id, refetch, columnId, columnTitle, co
                         <span className='text-gray-400 text-xs'>10 Nov</span>
                     </div>
 
-                    <div className="flex -space-x-4">
+                    {makers.length > 0 ? <div className="flex -space-x-4">
                         <img className="w-7 h-7 rounded-full "
-                             src="https://sun9-56.userapi.com/impg/3BZG-0t0fSKpY-Q6_Y6NyWwqe8hAgeowXuXEDQ/P2tURnFvRw0.jpg?size=725x677&quality=95&sign=009bcd00a8b1b87d1e6199e5fc17080e&type=album"
+                             src={makers[0].avatar}
+                             alt=""/>
+                    </div> : makers.length > 3 ? <div className="flex -space-x-4">
+                        <img className="w-7 h-7 rounded-full "
+                             src={makers[0].avatar}
                              alt=""/>
                         <img className="w-7 h-7 rounded-full "
-                             src="https://sun9-56.userapi.com/impg/3BZG-0t0fSKpY-Q6_Y6NyWwqe8hAgeowXuXEDQ/P2tURnFvRw0.jpg?size=725x677&quality=95&sign=009bcd00a8b1b87d1e6199e5fc17080e&type=album"
+                             src={makers[1].avatar}
                              alt=""/>
-                    </div>
+                    </div> : null}
+                    {/*<div className="flex -space-x-4">*/}
+                    {/*    <img className="w-7 h-7 rounded-full "*/}
+                    {/*         src="https://sun9-56.userapi.com/impg/3BZG-0t0fSKpY-Q6_Y6NyWwqe8hAgeowXuXEDQ/P2tURnFvRw0.jpg?size=725x677&quality=95&sign=009bcd00a8b1b87d1e6199e5fc17080e&type=album"*/}
+                    {/*         alt=""/>*/}
+                    {/*    <img className="w-7 h-7 rounded-full "*/}
+                    {/*         src="https://sun9-56.userapi.com/impg/3BZG-0t0fSKpY-Q6_Y6NyWwqe8hAgeowXuXEDQ/P2tURnFvRw0.jpg?size=725x677&quality=95&sign=009bcd00a8b1b87d1e6199e5fc17080e&type=album"*/}
+                    {/*         alt=""/>*/}
+                    {/*</div>*/}
                 </div>
 
                 {/*<div className='flex flex-col justify-between items-start w-full space-y-0.5'>*/}
