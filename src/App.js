@@ -15,9 +15,9 @@ function App() {
   return (
       <QueryClientProvider client={queryClient}>
         <Routes>
+            <Route path='' element={<Navigate to="/welcome" />}/>
             <Route path='/login' element={<LoginPage/>}/>
             <Route path='/welcome' element={<WelcomePage/>}/>
-            <Route path='' element={<Navigate to="/welcome" />}/>
             <Route path='/' element={<Sidebar/>}>
                 <Route path='/space' element={<Space />}/>
                 <Route path='/board/:boardId' element={<Board />}/>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASIC_URL = 'http://176.212.185.97:7841'
+const BASIC_URL = 'http://localhost:7841'
 axios.defaults.baseURL = BASIC_URL
 
 export const getUser = async (code) => {
